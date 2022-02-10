@@ -1,28 +1,51 @@
-import React, { useState } from "react";
-import Form from "./components/AddNote";
+import React from "react";
 import "./index.css";
 import NoteList from "./components/NoteList";
-import CreateTask from "./components/Notes";
 import { nanoid } from "nanoid";
 
 export default function App() {
 	const [notes, setNotes] = React.useState([]);
+	const [currentId, setCurrentId] = React.useState("");
 
-	function saveNote(noteText) {
-		// console.log(`Saved text: ${noteText}`);
-		const currentDate = new Date();
-		const convertedTime = currentDate.toLocaleString("en-US", {
-			day: "numeric",
-			month: "numeric",
-			year: "numeric",
-		});
-		const newNote = {
-			id: nanoid(),
-			date: convertedTime,
-			text: noteText,
-		};
+	function findNoteId(noteId) {
+		setCurrentId(noteId);
+	}
 
-		setNotes((prevNotes) => [...prevNotes, newNote]);
+	function saveNote(noteData) {
+		// noteData is an object containing id,data,text
+		// If noteData.id exists then the existing note is being edited
+		if (noteData.id) {
+			setNotes((prevNotes) =>
+				prevNotes.map((note) => {
+					if (note.id === noteData.id) {
+						return {
+							...noteData,
+						};
+					} else {
+						return {
+							...note,
+						};
+					}
+				})
+			);
+		}
+
+		// noteData.id does not exist => create a new note
+		else {
+			const currentDate = new Date();
+			const convertedTime = currentDate.toLocaleString("en-US", {
+				day: "numeric",
+				month: "numeric",
+				year: "numeric",
+			});
+			const newNote = {
+				id: nanoid(),
+				date: convertedTime,
+				text: noteData.text,
+			};
+
+			setNotes((prevNotes) => [...prevNotes, newNote]);
+		}
 	}
 
 	function deleteNote(id) {
@@ -34,19 +57,14 @@ export default function App() {
 		);
 	}
 
-	function editNote(id) {
-		console.log("note edit", id);
-		const find = notes.find((note) => note.id === id);
-		console.log(find);
-	}
-
 	return (
 		<div className="app-container">
 			<NoteList
 				notes={notes}
 				saveNote={saveNote}
 				deleteNote={deleteNote}
-				editNote={editNote}
+				currentId={currentId}
+				findNoteId={findNoteId}
 			/>
 		</div>
 	);

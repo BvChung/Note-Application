@@ -1,18 +1,29 @@
 import React from "react";
 
 export default function AddNote({ saveNote }) {
-	const [noteText, setNoteText] = React.useState("");
-	function handleChange(event) {
+	const [noteData, setNoteData] = React.useState({
+		id: null,
+		date: "",
+		text: "",
+	});
+
+	function handleNoteChange(event) {
 		const { name, value } = event.target;
-		setNoteText(value);
+		setNoteData((prevNoteData) => {
+			return {
+				...prevNoteData,
+				[name]: value,
+			};
+		});
 	}
-	console.log(noteText);
+	// console.log(noteData);
 
 	return (
 		<div className="note new">
 			<textarea
-				value={noteText}
-				onChange={handleChange}
+				name="text"
+				value={noteData.text}
+				onChange={handleNoteChange}
 				rows="8"
 				cols="10"
 				placeholder="Type to add a note"
@@ -20,7 +31,7 @@ export default function AddNote({ saveNote }) {
 			<div className="note-details">
 				<small>date</small>
 
-				<button onClick={() => saveNote(noteText)}>Save</button>
+				<button onClick={() => saveNote(noteData)}>Save</button>
 			</div>
 		</div>
 	);
