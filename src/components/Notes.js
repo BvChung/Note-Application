@@ -1,6 +1,6 @@
 import React from "react";
 import EditNote from "./EditNote";
-import { FiTrash2, FiEdit } from "react-icons/fi";
+import { FiTrash2, FiEdit, FiCheck, FiXCircle } from "react-icons/fi";
 
 export default function Notes({
 	id,
@@ -9,20 +9,31 @@ export default function Notes({
 	deleteNote,
 	saveNote,
 	toggleEdit,
-	findNoteId,
 }) {
 	const [edit, setEdit] = React.useState(false);
 	function toggleEdit() {
 		setEdit((prevEdit) => !prevEdit);
 	}
 
+	const [completed, setCompleted] = React.useState(false);
+	function toggleCompleted() {
+		setCompleted((prevCompleted) => !prevCompleted);
+	}
+
 	return (
 		<div>
 			{!edit ? (
-				<div onClick={() => findNoteId(id)} className="note">
-					<span>{text}</span>
+				<div className="note">
+					<div className={completed ? "completed" : ""}>
+						<p>{text}</p>
+					</div>
 					<div className="note-details">
 						<small>{date}</small>
+						{completed ? (
+							<FiXCircle onClick={toggleCompleted} />
+						) : (
+							<FiCheck onClick={toggleCompleted} />
+						)}
 						<FiEdit
 							onClick={() => {
 								toggleEdit();

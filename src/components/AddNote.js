@@ -16,7 +16,14 @@ export default function AddNote({ saveNote }) {
 			};
 		});
 	}
-	// console.log(noteData);
+
+	function resetAfterSubmit() {
+		setNoteData({
+			id: null,
+			date: "",
+			text: "",
+		});
+	}
 
 	return (
 		<div className="note new">
@@ -31,7 +38,14 @@ export default function AddNote({ saveNote }) {
 			<div className="note-details">
 				<small>date</small>
 
-				<button onClick={() => saveNote(noteData)}>Save</button>
+				<button
+					onClick={() => {
+						saveNote(noteData);
+						resetAfterSubmit();
+					}}
+				>
+					Save
+				</button>
 			</div>
 		</div>
 	);
