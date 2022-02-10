@@ -1,53 +1,53 @@
 import React, { useState } from "react";
-import Form from "./components/Form";
-import List from "./components/List";
-import Todo from "./components/Todo";
+import Form from "./components/AddNote";
+import "./index.css";
+import NoteList from "./components/NoteList";
+import CreateTask from "./components/Notes";
 import { nanoid } from "nanoid";
 
 export default function App() {
-	const [inputData, setInputData] = useState({
-		text: "",
-	});
+	const [notes, setNotes] = React.useState([]);
 
-	const [addTask, setaddTask] = useState([]);
-
-	// console.log(inputData);
-	// console.log(addTask);
-	function handleChange(event) {
-		const { name, value } = event.target;
-
-		setInputData((prevData) => {
-			return {
-				...prevData,
-				[name]: value,
-			};
+	function saveNote(noteText) {
+		// console.log(`Saved text: ${noteText}`);
+		const currentDate = new Date();
+		const convertedTime = currentDate.toLocaleString("en-US", {
+			day: "numeric",
+			month: "numeric",
+			year: "numeric",
 		});
+		const newNote = {
+			id: nanoid(),
+			date: convertedTime,
+			text: noteText,
+		};
+
+		setNotes((prevNotes) => [...prevNotes, newNote]);
 	}
 
-	function handleSubmit(e) {
-		e.preventDefault();
-		if (!inputData.text || /^\s*$/.test(inputData.text)) {
-			return;
-		}
-		const todo = {
-			id: nanoid(),
-			taskText: inputData.text,
-		};
-		setaddTask((prevTask) => [todo, ...prevTask]);
+	function deleteNote(id) {
+		console.log("note deleted", id);
+		setNotes((prevNotes) =>
+			prevNotes.filter((note) => {
+				return note.id !== id;
+			})
+		);
+	}
+
+	function editNote(id) {
+		console.log("note edit", id);
+		const find = notes.find((note) => note.id === id);
+		console.log(find);
 	}
 
 	return (
-		<div>
-			<Form
-				inputData={inputData}
-				handleChange={handleChange}
-				handleSubmit={handleSubmit}
+		<div className="app-container">
+			<NoteList
+				notes={notes}
+				saveNote={saveNote}
+				deleteNote={deleteNote}
+				editNote={editNote}
 			/>
-			<Todo />
-			<List tasks={addTask} />
 		</div>
 	);
 }
-
-const ex = [];
-ex.map((m) => m);
