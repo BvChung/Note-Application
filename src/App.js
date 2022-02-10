@@ -2,14 +2,10 @@ import React from "react";
 import "./index.css";
 import NoteList from "./components/NoteList";
 import { nanoid } from "nanoid";
+import Search from "./components/Search";
 
 export default function App() {
 	const [notes, setNotes] = React.useState([]);
-	const [currentId, setCurrentId] = React.useState("");
-
-	function findNoteId(noteId) {
-		setCurrentId(noteId);
-	}
 
 	function saveNote(noteData) {
 		// noteData is an object containing id,data,text
@@ -29,7 +25,6 @@ export default function App() {
 				})
 			);
 		}
-
 		// noteData.id does not exist => create a new note
 		else {
 			const currentDate = new Date();
@@ -57,14 +52,22 @@ export default function App() {
 		);
 	}
 
+	const [searchText, setSearchText] = React.useState("");
+
+	function handleSearchText(event) {
+		const { value } = event.target;
+		setSearchText(value);
+	}
+
 	return (
 		<div className="app-container">
+			<Search searchText={searchText} handleSearchText={handleSearchText} />
 			<NoteList
-				notes={notes}
+				notes={notes.filter((note) =>
+					note.text.toLowerCase().includes(searchText.toLowerCase())
+				)}
 				saveNote={saveNote}
 				deleteNote={deleteNote}
-				currentId={currentId}
-				findNoteId={findNoteId}
 			/>
 		</div>
 	);
