@@ -3,10 +3,16 @@ import "../index.css";
 import AddNote from "./AddNote";
 import Notes from "./Notes";
 
-export default function NoteList({ notes, saveNote, deleteNote, editNote }) {
-	console.log(notes);
+export default function NoteList({
+	notes,
+	saveNote,
+	deleteNote,
+	findNoteId,
+	currentId,
+}) {
 	return (
 		<div className="notes-list">
+			{/* Iterate through notes data and render Notes */}
 			{notes.map((note) => {
 				return (
 					<Notes
@@ -15,7 +21,9 @@ export default function NoteList({ notes, saveNote, deleteNote, editNote }) {
 						text={note.text}
 						date={note.date}
 						deleteNote={deleteNote}
-						editNote={editNote}
+						saveNote={saveNote}
+						findNoteId={findNoteId}
+						currentId={currentId}
 					/>
 				);
 			})}

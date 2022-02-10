@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function EditNote({ id, text, date }) {
+export default function EditNote({ id, text, date, saveNote, toggleEdit }) {
 	const [editedText, setEditedText] = React.useState({
 		id: id,
-		text: text,
 		date: date,
+		text: text,
 	});
 
 	function handleEdit(event) {
@@ -16,7 +16,7 @@ export default function EditNote({ id, text, date }) {
 			};
 		});
 	}
-	console.log(editedText);
+	// console.log(editedText.id);
 
 	return (
 		<div className="note new">
@@ -31,7 +31,14 @@ export default function EditNote({ id, text, date }) {
 			<div className="note-details">
 				<small>date</small>
 
-				<button onClick={console.log(editedText)}>Save</button>
+				<button
+					onClick={() => {
+						saveNote(editedText);
+						toggleEdit();
+					}}
+				>
+					Done edit
+				</button>
 			</div>
 		</div>
 	);
