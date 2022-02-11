@@ -1,14 +1,20 @@
 import React from "react";
+import "../css/search.css";
+import { BiSearch } from "react-icons/bi";
 
-export default function Search({ searchText, handleSearchText }) {
+export default function Search({ searchNote, handleNoteSearch }) {
 	return (
-		<div>
-			<input
-				value={searchText}
-				onChange={handleSearchText}
-				type="text"
-				placeholder="Search for note"
-			></input>
+		<div className="search">
+			<div className="search-container">
+				<BiSearch className="search-icon" />
+				<input
+					className="search-box"
+					value={searchNote}
+					onChange={handleNoteSearch}
+					type="text"
+					placeholder="Search for note"
+				></input>
+			</div>
 		</div>
 	);
 }
