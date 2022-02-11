@@ -1,0 +1,13 @@
+.pin-container {
+	overflow-y: auto;
+	/* width: min-content; */
+}
+
+.pin {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.2rem;
+
+	/* justify-content: center; */
+}
