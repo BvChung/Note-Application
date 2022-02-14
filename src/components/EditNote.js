@@ -1,9 +1,17 @@
 import React from "react";
 
-export default function EditNote({ id, text, date, saveNote, toggleEdit }) {
+export default function EditNote({
+	id,
+	text,
+	date,
+	day,
+	saveNote,
+	toggleEdit,
+}) {
 	const [editedText, setEditedText] = React.useState({
 		id: id,
 		date: date,
+		day: day,
 		text: text,
 	});
 

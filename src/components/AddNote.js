@@ -21,6 +21,7 @@ export default function AddNote({ saveNote }) {
 		setNoteData({
 			id: null,
 			date: "",
+			day: "",
 			text: "",
 		});
 	}

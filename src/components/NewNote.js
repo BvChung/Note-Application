@@ -6,26 +6,29 @@ export default function NewNote({
 	id,
 	text,
 	date,
+	day,
 	deleteNote,
 	toggleEdit,
 	completedNote,
 	toggleCompleted,
-	togglePinNote,
+	togglePin,
 	getPinNoteData,
 }) {
+	const completedClassName = completedNote ? "completed" : "";
 	return (
 		<div className="note">
-			<div className={completedNote ? "completed" : ""}>
+			<div className={completedClassName}>
 				<p>{text}</p>
 			</div>
 			<div className="note-details">
 				<small>{date}</small>
 				<BsPinAngle
 					onClick={() => {
-						togglePinNote();
+						togglePin();
 						getPinNoteData({
 							id: id,
 							date: date,
+							day: day,
 							text: text,
 						});
 					}}

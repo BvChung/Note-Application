@@ -15,6 +15,8 @@ export default function App() {
 	}, [notes]);
 
 	function saveNote(noteData) {
+		if (!noteData) return;
+
 		// noteData is an object containing id,data,text
 		// If noteData.id exists then the existing note is being edited
 		if (noteData.id) {
@@ -40,11 +42,16 @@ export default function App() {
 				month: "numeric",
 				year: "numeric",
 			});
+
 			const newNote = {
 				id: nanoid(),
 				date: convertedTime,
+				day: +currentDate.getDate(),
 				text: noteData.text,
 			};
+
+			// Prevent blank notes from being added
+			if (newNote.text === "") return;
 
 			setNotes((prevNotes) => [...prevNotes, newNote]);
 		}
@@ -66,6 +73,14 @@ export default function App() {
 		setNoteSearch(value);
 	}
 
+	function sortDateAscending() {
+		setNotes((prevNotes) => [...prevNotes].sort((a, b) => a.day - b.day));
+	}
+
+	function sortDateDescending() {
+		setNotes((prevNotes) => [...prevNotes].sort((a, b) => b.day - a.day));
+	}
+
 	const [pinNoteData, setPinNoteData] = React.useState(
 		JSON.parse(localStorage.getItem("pin-data")) || []
 	);
@@ -75,6 +90,14 @@ export default function App() {
 	}, [pinNoteData]);
 
 	function getPinNoteData(pinData) {
+		// Pin button clicked -> note from main section is removed
+		setNotes((prevNotes) =>
+			prevNotes.filter((note) => {
+				return note.id !== pinData.id;
+			})
+		);
+
+		// Add data to pinned note array
 		const newPinData = {
 			id: nanoid(),
 			...pinData,
@@ -88,24 +111,38 @@ export default function App() {
 				(noteData, i, arr) =>
 					i === arr.findIndex((position) => position.id === noteData.id)
 			);
-			console.log(filteredData);
+
 			return filteredData;
 		});
 	}
 
-	console.log(pinNoteData);
-
-	function unpinNotes(id) {
+	function unpinNotes(data) {
+		// Removes pinned note from arr
 		setPinNoteData((prevNotes) =>
 			prevNotes.filter((note) => {
-				return note.id !== id;
+				return note.id !== data.id;
 			})
 		);
+
+		// Returns note to main section
+		const returnNote = {
+			id: data.id,
+			date: data.date,
+			day: data.day,
+			text: data.text,
+		};
+
+		setNotes((prevNotes) => [...prevNotes, returnNote]);
 	}
 
 	return (
 		<div className="app-container">
-			<Search searchNote={searchNote} handleNoteSearch={handleNoteSearch} />
+			<Search
+				searchNote={searchNote}
+				handleNoteSearch={handleNoteSearch}
+				sortDateAscending={sortDateAscending}
+				sortDateDescending={sortDateDescending}
+			/>
 			<div className="notes-container">
 				<PinNoteList pinNoteData={pinNoteData} unpinNotes={unpinNotes} />
 
@@ -121,22 +158,3 @@ export default function App() {
 		</div>
 	);
 }
-
-let ex = [
-	{
-		id: "EWZP-BFGgTjmZnSDbyrde",
-		date: "2/10/2022",
-		text: "Add ability to pin notes or make important and fix css resident sleeper.",
-	},
-	{
-		id: "EWZP-BFGgTjmZnSDbyrde",
-		date: "2/10/2022",
-		text: "Add ability to pin notes or make important and fix css resident sleeper.",
-	},
-	{ id: "two" },
-	1,
-];
-
-// setPinNoteData((prevPinData) => [...prevPinData, newPinData])
-ex = ex.filter((ex, i, arr) => i === arr.findIndex((t) => t.id === ex.id));
-console.log(ex);
