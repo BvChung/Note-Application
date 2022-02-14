@@ -1,8 +1,13 @@
 import React from "react";
 import "../css/search.css";
-import { BiSearch } from "react-icons/bi";
+import { BiSearch, BiSortUp, BiSortDown } from "react-icons/bi";
 
-export default function Search({ searchNote, handleNoteSearch }) {
+export default function Search({
+	searchNote,
+	handleNoteSearch,
+	sortDateAscending,
+	sortDateDescending,
+}) {
 	return (
 		<div className="search">
 			<div className="search-container">
@@ -14,6 +19,15 @@ export default function Search({ searchNote, handleNoteSearch }) {
 					type="text"
 					placeholder="Search for note"
 				></input>
+			</div>
+			<div className="sort">
+				<button>
+					<BiSortUp onClick={sortDateAscending} className="search-icon" />
+				</button>
+
+				<button>
+					<BiSortDown onClick={sortDateDescending} className="search-icon" />
+				</button>
 			</div>
 		</div>
 	);

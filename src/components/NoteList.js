@@ -12,6 +12,7 @@ export default function NoteList({
 	return (
 		<div className="notes-list">
 			<AddNote notes={notes} saveNote={saveNote} />
+
 			{/* Iterate through notes data and render Notes */}
 			{notes.map((note) => {
 				return (
@@ -20,6 +21,7 @@ export default function NoteList({
 						id={note.id}
 						text={note.text}
 						date={note.date}
+						day={note.day}
 						deleteNote={deleteNote}
 						saveNote={saveNote}
 						getPinNoteData={getPinNoteData}

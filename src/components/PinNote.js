@@ -11,7 +11,7 @@ export default function PinNote({ pinNoteData, unpinNotes }) {
 				</div>
 				<div className="note-details">
 					<small>{data.date}</small>
-					<BsPinAngle onClick={() => unpinNotes(data.id)} />
+					<BsPinAngle onClick={() => unpinNotes(data)} />
 				</div>
 			</div>
 		);

@@ -9,6 +9,7 @@ export default function Notes({
 	id,
 	text,
 	date,
+	day,
 	deleteNote,
 	saveNote,
 	toggleEdit,
@@ -24,9 +25,9 @@ export default function Notes({
 		setCompletedNote((prevCompletedNote) => !prevCompletedNote);
 	}
 
-	const [pinNote, setPinNote] = React.useState(false);
-	function togglePinNote() {
-		setPinNote((prevPin) => !prevPin);
+	const [pin, setPin] = React.useState(false);
+	function togglePin() {
+		setPin((prevPin) => !prevPin);
 	}
 
 	return (
@@ -36,12 +37,13 @@ export default function Notes({
 					id={id}
 					text={text}
 					date={date}
+					day={day}
 					saveNote={saveNote}
 					deleteNote={deleteNote}
 					toggleEdit={toggleEdit}
 					completedNote={completedNote}
 					toggleCompleted={toggleCompleted}
-					togglePinNote={togglePinNote}
+					togglePin={togglePin}
 					getPinNoteData={getPinNoteData}
 				/>
 			) : (
@@ -49,6 +51,7 @@ export default function Notes({
 					id={id}
 					text={text}
 					date={date}
+					day={day}
 					saveNote={saveNote}
 					toggleEdit={toggleEdit}
 				/>
