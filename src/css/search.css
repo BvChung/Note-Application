@@ -1,6 +1,6 @@
 .search {
 	height: 4.8rem;
-	margin-bottom: 1.2rem;
+
 	border-bottom: 2px solid #ced4da;
 	display: flex;
 	align-items: center;
@@ -15,10 +15,15 @@
 	width: 50%;
 	gap: 0.8rem;
 	padding-left: 1.2rem;
-	/* background-color: aquamarine; */
+	margin-top: 1.2rem;
+	margin-bottom: 1.2rem;
+	background-color: #e6fcf5;
 	border-radius: 9px;
 
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.search-container:hover {
 }
 
 .search-icon {
@@ -31,13 +36,15 @@
 	font-size: 1.2rem;
 
 	padding: 0.6rem 0.8rem;
-	height: 99%;
+	/* height: 99%; */
 	width: 100%;
 
 	border: none;
 	/* box-shadow: 0 1px rgba(0, 0, 0, 0.1); */
 }
 
-.search-box:focus {
-	outline: 2px solid #adb5bd;
+.search-box:focus-within {
+	/* outline: 2px solid #e6fcf5; */
+	outline: 1px solid #e6fcf5;
+	border-radius: 9px;
 }

@@ -1,6 +1,14 @@
 .pin-container {
 	overflow-y: auto;
+	display: fixed;
+	border-right: 4px solid #dee2e6;
+	padding: 0 1.2rem;
+	/* display: none; */
 	/* width: min-content; */
+}
+
+.pin-note {
+	background-color: #96f2d7;
 }
 
 .pin {

@@ -6,36 +6,66 @@
 
 body {
 	font-family: "Inter", sans-serif;
+	font-weight: 400;
+	font-size: 1.3rem;
+}
+
+.app-container {
+	height: 100vh;
+	/* width: min(90%, 120rem); */
 }
 
 .notes-container {
-	display: grid;
-	grid-template-columns: 0.3fr 1fr;
-	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2.4rem;
+	margin: 2.4rem 1.2rem;
+	/* border: 4px solid #dee2e6; */
 }
 
 .notes-list {
 	display: grid;
 	/* grid-template-columns: repeat(auto-fit, minmax(250px, 1.2fr)); */
-	grid-template-columns: repeat(2, minmax(250px, 1.2fr));
-	gap: 1.2rem;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 3.2rem;
+
 	align-items: center;
 	justify-content: center;
 }
 
 .note {
-	min-height: 10rem;
-	width: 90%;
+	/* min-height: 10rem; */
+	font-weight: 500;
+	width: 24rem;
+	height: 12.4rem;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
+	font-size: 1.2rem;
 	/* align-items: center; */
 	justify-content: space-between;
 	overflow-wrap: break-word;
 
-	background-color: #fef68a;
+	background-color: #fff;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
 	border-radius: 9px;
 	padding: 1.2rem;
+
+	animation-duration: 1.5s;
+	animation-name: slidein;
+	animation-iteration-count: 1;
+	animation-direction: alternate;
+}
+
+@keyframes slidein {
+	from {
+		margin-bottom: 100%;
+	}
+
+	to {
+		margin-right: 0%;
+	}
 }
 
 .note-details {
@@ -45,14 +75,16 @@ body {
 }
 
 .new {
-	background-color: ghostwhite;
+	background-color: #c3fae8;
 }
 
 textarea {
+	background-color: #c3fae8;
+	font-family: inherit;
+	font-size: 1.2rem;
 	border: none;
 	resize: none;
-	background-color: ghostwhite;
-	border-radius: 9px;
+	/* border-radius: 9px; */
 }
 
 textarea:focus {
