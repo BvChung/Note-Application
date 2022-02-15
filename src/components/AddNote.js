@@ -32,7 +32,7 @@ export default function AddNote({ saveNote }) {
 				name="text"
 				value={noteData.text}
 				onChange={handleNoteChange}
-				rows="8"
+				rows="4"
 				cols="10"
 				placeholder="Type to add a note"
 			></textarea>
