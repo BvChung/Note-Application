@@ -54,6 +54,8 @@ export default function Notes({
 					day={day}
 					saveNote={saveNote}
 					toggleEdit={toggleEdit}
+					completedNote={completedNote}
+					deleteNote={deleteNote}
 				/>
 			)}
 		</div>
