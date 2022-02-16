@@ -5,7 +5,7 @@ import "../css/pinnotes.css";
 export default function PinNote({ pinNoteData, unpinNotes }) {
 	const displayPinnedNote = pinNoteData.map((data) => {
 		return (
-			<div key={data.id} className="note pin-note ">
+			<div key={data.id} className="notes pin-note ">
 				<div>
 					<p>{data.text}</p>
 				</div>
@@ -19,8 +19,9 @@ export default function PinNote({ pinNoteData, unpinNotes }) {
 
 	return (
 		<div className="pin">
-			<h1>Pinned Notes</h1>
-			{pinNoteData ? displayPinnedNote : ""}
+			<div className="pin-container">
+				{pinNoteData ? displayPinnedNote : ""}
+			</div>
 		</div>
 	);
 }
