@@ -1,4 +1,6 @@
 import React from "react";
+import { FiTrash2, FiEdit, FiCheck, FiXCircle } from "react-icons/fi";
+import TextareaAutosize from "react-textarea-autosize";
 
 export default function EditNote({
 	id,
@@ -7,6 +9,7 @@ export default function EditNote({
 	day,
 	saveNote,
 	toggleEdit,
+	deleteNote,
 }) {
 	const [editedText, setEditedText] = React.useState({
 		id: id,
@@ -32,13 +35,12 @@ export default function EditNote({
 				name="text"
 				value={editedText.text}
 				onChange={handleEdit}
-				rows="8"
+				rows="6"
 				cols="10"
 				placeholder="Type to add a note"
 			></textarea>
 			<div className="note-details">
-				<small>date</small>
-
+				<FiTrash2 onClick={() => deleteNote(id)} className="trash-icon" />
 				<button
 					onClick={() => {
 						saveNote(editedText);

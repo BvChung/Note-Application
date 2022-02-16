@@ -32,13 +32,11 @@ export default function AddNote({ saveNote }) {
 				name="text"
 				value={noteData.text}
 				onChange={handleNoteChange}
-				rows="4"
+				rows="6"
 				cols="10"
 				placeholder="Type to add a note"
 			></textarea>
 			<div className="note-details">
-				<small>date</small>
-
 				<button
 					onClick={() => {
 						saveNote(noteData);
