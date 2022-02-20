@@ -8,6 +8,7 @@ export default function NoteList({
 	saveNote,
 	deleteNote,
 	getPinNoteData,
+	opened,
 }) {
 	return (
 		<div className="notes-list">

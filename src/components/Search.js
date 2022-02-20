@@ -7,19 +7,31 @@ export default function Search({
 	handleNoteSearch,
 	sortDateAscending,
 	sortDateDescending,
+	openPinNotes,
 }) {
 	return (
-		<div className="search">
-			<div className="search-container">
-				<BiSearch className="search-icon" />
-				<input
-					className="search-box"
-					value={searchNote}
-					onChange={handleNoteSearch}
-					type="text"
-					placeholder="Search for note"
-				></input>
+		<div className="search-c">
+			<div className="open-notes">
+				<button className="open-btn" onClick={openPinNotes}>
+					Pinned Notes
+				</button>
 			</div>
+			<div className="content">
+				<div className="search">
+					<input
+						type="text"
+						className="search__input"
+						aria-label="search"
+						placeholder="Search for note"
+						value={searchNote}
+						onChange={handleNoteSearch}
+					/>
+					<button className="search__submit" aria-label="submit search">
+						<BiSearch className="search-icon" />
+					</button>
+				</div>
+			</div>
+
 			<div className="sort">
 				<button>
 					<BiSortUp onClick={sortDateAscending} className="search-icon" />
