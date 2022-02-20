@@ -3,7 +3,7 @@ import "./index.css";
 import { nanoid } from "nanoid";
 import Search from "./components/Search";
 import NoteList from "./components/NoteList";
-import PinNoteList from "./components/PinNoteList";
+import PinNoteContainer from "./components/PinNoteContainer";
 
 export default function App() {
 	const [notes, setNotes] = React.useState(
@@ -17,6 +17,13 @@ export default function App() {
 	function saveNote(noteData) {
 		if (!noteData) return;
 
+		const date = new Date();
+		const currentDate = date.toLocaleString("en-US", {
+			day: "numeric",
+			month: "numeric",
+			year: "numeric",
+		});
+
 		// noteData is an object containing id,data,text
 		// If noteData.id exists then the existing note is being edited
 		if (noteData.id) {
@@ -25,6 +32,8 @@ export default function App() {
 					if (note.id === noteData.id) {
 						return {
 							...noteData,
+							date: currentDate,
+							day: +date.getDate(),
 						};
 					} else {
 						return {
@@ -36,17 +45,10 @@ export default function App() {
 		}
 		// noteData.id does not exist => create a new note
 		else {
-			const currentDate = new Date();
-			const convertedTime = currentDate.toLocaleString("en-US", {
-				day: "numeric",
-				month: "numeric",
-				year: "numeric",
-			});
-
 			const newNote = {
 				id: nanoid(),
-				date: convertedTime,
-				day: +currentDate.getDate(),
+				date: currentDate,
+				day: +date.getDate(),
 				text: noteData.text,
 			};
 
@@ -135,6 +137,11 @@ export default function App() {
 		setNotes((prevNotes) => [...prevNotes, returnNote]);
 	}
 
+	const [opened, setOpened] = React.useState(false);
+	function openPinNotes() {
+		setOpened((prevSet) => !prevSet);
+	}
+
 	return (
 		<div className="app-container">
 			<Search
@@ -142,9 +149,15 @@ export default function App() {
 				handleNoteSearch={handleNoteSearch}
 				sortDateAscending={sortDateAscending}
 				sortDateDescending={sortDateDescending}
+				openPinNotes={openPinNotes}
 			/>
 			<div className="notes-container">
-				<PinNoteList pinNoteData={pinNoteData} unpinNotes={unpinNotes} />
+				<PinNoteContainer
+					pinNoteData={pinNoteData}
+					unpinNotes={unpinNotes}
+					opened={opened}
+					openPinNotes={openPinNotes}
+				/>
 
 				<NoteList
 					notes={notes.filter((note) =>

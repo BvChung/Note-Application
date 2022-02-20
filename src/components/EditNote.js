@@ -31,14 +31,6 @@ export default function EditNote({
 
 	return (
 		<div className="note new">
-			<textarea
-				name="text"
-				value={editedText.text}
-				onChange={handleEdit}
-				rows="6"
-				cols="10"
-				placeholder="Type to add a note"
-			></textarea>
 			<div className="note-details">
 				<FiTrash2 onClick={() => deleteNote(id)} className="trash-icon" />
 				<button
@@ -50,6 +42,14 @@ export default function EditNote({
 					Done edit
 				</button>
 			</div>
+			<textarea
+				name="text"
+				value={editedText.text}
+				onChange={handleEdit}
+				rows="6"
+				cols="10"
+				placeholder="Type to add a note"
+			></textarea>
 		</div>
 	);
 }
