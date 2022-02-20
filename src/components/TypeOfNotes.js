@@ -3,7 +3,8 @@ import EditNote from "./EditNote";
 import { FiTrash2, FiEdit, FiCheck, FiXCircle } from "react-icons/fi";
 import { BsPinAngle } from "react-icons/bs";
 import NewNote from "./NewNote";
-import PinNoteList from "./PinNoteList";
+
+import PinNoteList from "./PinNoteContainer";
 
 export default function Notes({
 	id,
