@@ -10,7 +10,7 @@
 	/* align-items: center; */
 	justify-content: center;
 	overflow-wrap: break-word;
-	overflow: auto;
+	/* overflow: auto; */
 
 	background-color: #74c0fc;
 	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
@@ -28,6 +28,7 @@
 	flex-direction: column;
 	align-items: center;
 	/* width: fit-content; */
+	overflow-y: auto;
 	justify-content: center;
 	gap: 2.4rem;
 }
@@ -41,11 +42,11 @@
 	align-items: center;
 	justify-content: center;
 	height: 53rem;
-	overflow-y: auto;
+	/* overflow-y: auto; */
 
 	gap: 1.2rem;
 
-	border-bottom: 3px solid #dee2e6;
+	/* border-bottom: 3px solid #dee2e6; */
 
 	/* justify-content: center; */
 }

@@ -31,57 +31,12 @@ body {
 	display: grid;
 	/* grid-template-columns: repeat(auto-fit, minmax(250px, 1.2fr)); */
 	grid-template-columns: repeat(2, 1fr);
+	grid-row: span 2;
+	/* grid-template-columns: repeat(2, 1fr); */
 	row-gap: 2.4rem;
 
 	align-items: center;
 	justify-content: center;
-}
-
-.note {
-	/* min-height: 10rem; */
-	font-weight: 500;
-	width: 25rem;
-	/* width: min-content; */
-	/* height: max-content; */
-	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
-	font-size: 1.1rem;
-	/* align-items: center; */
-	justify-content: space-between;
-	overflow-wrap: break-word;
-	overflow: auto;
-
-	background-color: #74c0fc;
-	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
-	border-radius: 9px;
-	padding: 0.8rem 1.2rem;
-
-	/* animation-duration: 1.5s;
-	animation-name: slidein;
-	animation-iteration-count: 1;
-	animation-direction: alternate; */
-}
-
-.transition {
-	animation-duration: 1s;
-	animation-name: ease-in;
-	animation-iteration-count: 1;
-}
-
-@keyframes ease-in {
-	from {
-		margin-right: 100%;
-	}
-}
-
-.note-details {
-	display: flex;
-	justify-content: space-between;
-	padding: 0.3rem 0;
-	border-bottom: 2px solid #fff;
-	align-items: center;
-	margin-bottom: 0.8rem;
 }
 
 .date {
@@ -91,6 +46,33 @@ body {
 	font-size: 0.9rem;
 	color: #343a40;
 	font-weight: 600;
+}
+
+.note {
+	font-weight: 400;
+	width: 25rem;
+	/* width: min-content; */
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	font-size: 1.1rem;
+	justify-content: space-between;
+	overflow-wrap: break-word;
+	overflow: auto;
+
+	background-color: #74c0fc;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
+	border-radius: 9px;
+	padding: 0.8rem 1.2rem;
+}
+
+.note-details {
+	display: flex;
+	justify-content: space-between;
+	padding: 0.3rem 0;
+	border-bottom: 2px solid #fff;
+	align-items: center;
+	margin-bottom: 0.8rem;
 }
 
 .new {
@@ -118,6 +100,14 @@ textarea:focus {
 	text-decoration: line-through;
 }
 
-.pinned {
-	visibility: hidden;
+/* .transition {
+	animation-duration: 1s;
+	animation-name: ease-in;
+	animation-iteration-count: 1;
 }
+
+@keyframes ease-in {
+	from {
+		margin-right: 100%;
+	}
+} */
