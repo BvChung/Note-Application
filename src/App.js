@@ -2,10 +2,12 @@ import React from "react";
 import "./index.css";
 import { nanoid } from "nanoid";
 import Search from "./components/Search";
-import NoteList from "./components/NoteList";
+import NotesContainer from "./components/NotesContainer";
 import PinNoteContainer from "./components/PinNoteContainer";
+import { ScrollArea } from "@mantine/core";
 
 export default function App() {
+	// Note ----------------------------
 	const [notes, setNotes] = React.useState(
 		JSON.parse(localStorage.getItem("notes-data")) || []
 	);
@@ -33,7 +35,7 @@ export default function App() {
 						return {
 							...noteData,
 							date: currentDate,
-							day: +date.getDate(),
+							dayCreated: +date.getTime(),
 						};
 					} else {
 						return {
@@ -48,14 +50,15 @@ export default function App() {
 			const newNote = {
 				id: nanoid(),
 				date: currentDate,
-				day: +date.getDate(),
+				dayCreated: +date.getTime(),
 				text: noteData.text,
+				title: noteData.title,
 			};
 
 			// Prevent blank notes from being added
-			if (newNote.text === "") return;
+			if (newNote.title === "" && newNote.text === "") return;
 
-			setNotes((prevNotes) => [...prevNotes, newNote]);
+			setNotes((prevNotes) => [newNote, ...prevNotes]);
 		}
 	}
 
@@ -68,21 +71,40 @@ export default function App() {
 		);
 	}
 
+	// Sidebar ----------------------------
 	const [searchNote, setNoteSearch] = React.useState("");
-
 	function handleNoteSearch(event) {
 		const { value } = event.target;
 		setNoteSearch(value);
 	}
 
+	const [opened, setOpened] = React.useState(false);
+	function openPinNotes() {
+		setOpened((prevSet) => !prevSet);
+	}
+
+	const [createNote, setCreateNote] = React.useState(false);
+	function toggleCreateNote() {
+		setCreateNote((prevCreate) => !prevCreate);
+	}
+
 	function sortDateAscending() {
-		setNotes((prevNotes) => [...prevNotes].sort((a, b) => a.day - b.day));
+		setNotes((prevNotes) =>
+			[...prevNotes].sort((a, b) => a.dayCreated - b.dayCreated)
+		);
 	}
 
 	function sortDateDescending() {
-		setNotes((prevNotes) => [...prevNotes].sort((a, b) => b.day - a.day));
+		setNotes((prevNotes) =>
+			[...prevNotes].sort((a, b) => b.dayCreated - a.dayCreated)
+		);
 	}
 
+	function deleteAllNotes() {
+		setNotes([]);
+	}
+
+	// PinnedNotes ----------------------------
 	const [pinNoteData, setPinNoteData] = React.useState(
 		JSON.parse(localStorage.getItem("pin-data")) || []
 	);
@@ -118,7 +140,7 @@ export default function App() {
 		});
 	}
 
-	function unpinNotes(data) {
+	function unpinNote(data) {
 		// Removes pinned note from arr
 		setPinNoteData((prevNotes) =>
 			prevNotes.filter((note) => {
@@ -130,44 +152,58 @@ export default function App() {
 		const returnNote = {
 			id: data.id,
 			date: data.date,
-			day: data.day,
+			dayCreated: data.dayCreated,
+			title: data.title,
 			text: data.text,
 		};
 
 		setNotes((prevNotes) => [...prevNotes, returnNote]);
 	}
 
-	const [opened, setOpened] = React.useState(false);
-	function openPinNotes() {
-		setOpened((prevSet) => !prevSet);
+	function deletePinNote(id) {
+		console.log("note deleted", id);
+		setPinNoteData((prevNotes) =>
+			prevNotes.filter((note) => {
+				return note.id !== id;
+			})
+		);
 	}
 
+	// console.log(notes);
+	// console.log(pinNoteData);
+
 	return (
-		<div className="app-container">
-			<Search
-				searchNote={searchNote}
-				handleNoteSearch={handleNoteSearch}
-				sortDateAscending={sortDateAscending}
-				sortDateDescending={sortDateDescending}
-				openPinNotes={openPinNotes}
-			/>
-			<div className="notes-container">
-				<PinNoteContainer
-					pinNoteData={pinNoteData}
-					unpinNotes={unpinNotes}
-					opened={opened}
+		<ScrollArea>
+			<div className="app-container">
+				<Search
+					searchNote={searchNote}
+					handleNoteSearch={handleNoteSearch}
+					toggleCreateNote={toggleCreateNote}
+					sortDateAscending={sortDateAscending}
+					sortDateDescending={sortDateDescending}
+					deleteAllNotes={deleteAllNotes}
 					openPinNotes={openPinNotes}
 				/>
+				<div className="notes-container">
+					<PinNoteContainer
+						pinNoteData={pinNoteData}
+						unpinNote={unpinNote}
+						deletePinNote={deletePinNote}
+						opened={opened}
+						openPinNotes={openPinNotes}
+					/>
 
-				<NoteList
-					notes={notes.filter((note) =>
-						note.text.toLowerCase().includes(searchNote.toLowerCase())
-					)}
-					saveNote={saveNote}
-					deleteNote={deleteNote}
-					getPinNoteData={getPinNoteData}
-				/>
+					<NotesContainer
+						notes={notes.filter((note) =>
+							note.text.toLowerCase().includes(searchNote.toLowerCase())
+						)}
+						createNote={createNote}
+						saveNote={saveNote}
+						deleteNote={deleteNote}
+						getPinNoteData={getPinNoteData}
+					/>
+				</div>
 			</div>
-		</div>
+		</ScrollArea>
 	);
 }

@@ -1,12 +1,12 @@
 import React from "react";
 import { FiTrash2, FiEdit, FiCheck, FiXCircle } from "react-icons/fi";
-import TextareaAutosize from "react-textarea-autosize";
 
 export default function EditNote({
 	id,
+	title,
 	text,
 	date,
-	day,
+	dayCreated,
 	saveNote,
 	toggleEdit,
 	deleteNote,
@@ -14,7 +14,8 @@ export default function EditNote({
 	const [editedText, setEditedText] = React.useState({
 		id: id,
 		date: date,
-		day: day,
+		dayCreated: dayCreated,
+		title: title,
 		text: text,
 	});
 
@@ -27,7 +28,6 @@ export default function EditNote({
 			};
 		});
 	}
-	// console.log(editedText.id);
 
 	return (
 		<div className="note new">
@@ -42,6 +42,14 @@ export default function EditNote({
 					Done edit
 				</button>
 			</div>
+			<textarea
+				name="title"
+				value={editedText.title}
+				onChange={handleEdit}
+				rows="1"
+				cols="2"
+				placeholder="Title"
+			></textarea>
 			<textarea
 				name="text"
 				value={editedText.text}

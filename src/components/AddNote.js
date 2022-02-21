@@ -5,6 +5,7 @@ export default function AddNote({ saveNote, notes }) {
 		id: null,
 		date: "",
 		text: "",
+		title: "",
 	});
 
 	function handleNoteChange(event) {
@@ -23,6 +24,7 @@ export default function AddNote({ saveNote, notes }) {
 			date: "",
 			day: "",
 			text: "",
+			title: "",
 		});
 	}
 
@@ -39,10 +41,18 @@ export default function AddNote({ saveNote, notes }) {
 				<small className="date">{currentDate}</small>
 			</div>
 			<textarea
+				name="title"
+				value={noteData.title}
+				onChange={handleNoteChange}
+				rows="1"
+				cols="2"
+				placeholder="Title"
+			></textarea>
+			<textarea
 				name="text"
 				value={noteData.text}
 				onChange={handleNoteChange}
-				rows="6"
+				rows="5"
 				cols="10"
 				placeholder="Type to add a note"
 			></textarea>
@@ -53,7 +63,7 @@ export default function AddNote({ saveNote, notes }) {
 						resetAfterSubmit();
 					}}
 				>
-					+
+					Save
 				</button>
 			</div>
 		</div>
