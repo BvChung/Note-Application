@@ -5,9 +5,10 @@ import { Drawer } from "@mantine/core";
 
 export default function PinNoteList({
 	pinNoteData,
-	unpinNotes,
+	unpinNote,
 	opened,
 	openPinNotes,
+	deletePinNote,
 }) {
 	function pinNoteDrawer() {
 		return (
@@ -16,8 +17,9 @@ export default function PinNoteList({
 					opened={opened}
 					onClose={() => openPinNotes()}
 					title="Pinned Notes"
+					position="right"
 					size="xl"
-					padding="xl"
+					padding="lg"
 					shadow="xs"
 					styles={{
 						drawer: { backgroundColor: "#f8f9fa" },
@@ -32,7 +34,8 @@ export default function PinNoteList({
 					<PinNote
 						key={pinNoteData.id}
 						pinNoteData={pinNoteData}
-						unpinNotes={unpinNotes}
+						unpinNote={unpinNote}
+						deletePinNote={deletePinNote}
 					/>
 				</Drawer>
 			</>

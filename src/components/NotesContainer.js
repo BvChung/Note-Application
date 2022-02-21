@@ -8,11 +8,11 @@ export default function NoteList({
 	saveNote,
 	deleteNote,
 	getPinNoteData,
-	opened,
+	createNote,
 }) {
 	return (
 		<div className="notes-list">
-			<AddNote notes={notes} saveNote={saveNote} />
+			{createNote && <AddNote notes={notes} saveNote={saveNote} />}
 
 			{/* Iterate through notes data and render Notes */}
 			{notes.map((note) => {
@@ -20,9 +20,10 @@ export default function NoteList({
 					<TypeOfNotes
 						key={note.id}
 						id={note.id}
+						title={note.title}
 						text={note.text}
 						date={note.date}
-						day={note.day}
+						dayCreated={note.dayCreated}
 						deleteNote={deleteNote}
 						saveNote={saveNote}
 						getPinNoteData={getPinNoteData}
