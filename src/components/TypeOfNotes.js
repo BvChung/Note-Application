@@ -1,16 +1,13 @@
 import React from "react";
 import EditNote from "./EditNote";
-import { FiTrash2, FiEdit, FiCheck, FiXCircle } from "react-icons/fi";
-import { BsPinAngle } from "react-icons/bs";
-import NewNote from "./NewNote";
-
-import PinNoteList from "./PinNoteContainer";
+import Note from "./Note";
 
 export default function Notes({
 	id,
+	title,
 	text,
 	date,
-	day,
+	dayCreated,
 	deleteNote,
 	saveNote,
 	toggleEdit,
@@ -34,11 +31,12 @@ export default function Notes({
 	return (
 		<div>
 			{!edit ? (
-				<NewNote
+				<Note
 					id={id}
+					title={title}
 					text={text}
 					date={date}
-					day={day}
+					dayCreated={dayCreated}
 					saveNote={saveNote}
 					deleteNote={deleteNote}
 					toggleEdit={toggleEdit}
@@ -50,9 +48,10 @@ export default function Notes({
 			) : (
 				<EditNote
 					id={id}
+					title={title}
 					text={text}
 					date={date}
-					day={day}
+					dayCreated={dayCreated}
 					saveNote={saveNote}
 					toggleEdit={toggleEdit}
 					completedNote={completedNote}
