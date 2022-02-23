@@ -1,7 +1,8 @@
 import React from "react";
+import Color from "./Color";
 import { FiTrash, FiEdit, FiCheck, FiXCircle } from "react-icons/fi";
 import { BsPinAngle } from "react-icons/bs";
-import { Menu, createStyles, Tooltip, ColorSwatch, Group } from "@mantine/core";
+import { Menu, createStyles, Tooltip } from "@mantine/core";
 
 export default function NewNote({
 	id,
@@ -15,6 +16,9 @@ export default function NewNote({
 	toggleCompleted,
 	togglePin,
 	getPinNoteData,
+	changeColor,
+	saveNoteColor,
+	noteColor,
 }) {
 	const completedClassName = completedNote ? "completed" : "";
 
@@ -26,26 +30,25 @@ export default function NewNote({
 		},
 		itemHovered: {
 			backgroundColor: "#f1f3f5",
-
-			// color: theme.white,
 		},
 	}));
 
-	const [opened, setOpened] = React.useState(false);
+	const [tooltipOpened, setTooltipOpened] = React.useState(false);
 
 	function Tools() {
 		const { classes } = useStyles();
 		return (
-			<Tooltip label="More" opened={opened} withArrow>
+			<Tooltip label="More" opened={tooltipOpened}>
 				<Menu
 					// trigger="hover"
 					delay={300}
 					size="sm"
 					classNames={classes}
+					className="size"
 					withArrow
 					styles={{ body: { color: "red" } }}
-					onMouseEnter={() => setOpened(true)}
-					onMouseLeave={() => setOpened(false)}
+					onMouseEnter={() => setTooltipOpened(true)}
+					onMouseLeave={() => setTooltipOpened(false)}
 				>
 					<Menu.Label>Tools</Menu.Label>
 					<Menu.Item
@@ -64,6 +67,7 @@ export default function NewNote({
 								dayCreated: dayCreated,
 								title: title,
 								text: text,
+								noteColor: noteColor,
 							});
 						}}
 					>
@@ -89,13 +93,23 @@ export default function NewNote({
 	}
 
 	return (
-		<div className="note">
+		<div className={`note ${noteColor}`}>
 			<div className="note-details">
 				<small className="date">{date}</small>
-				{Tools()}
+
+				<div className="note-tools">
+					<Color
+						// key={id}
+						id={id}
+						changeColor={changeColor}
+						noteColor={noteColor}
+						saveNoteColor={saveNoteColor}
+					/>
+					{Tools()}
+				</div>
 			</div>
 			<div className="text-container">
-				<h3 className="note-title">{title}</h3>
+				<h4 className="note-title">{title}</h4>
 				<p className={completedClassName}>{text}</p>
 			</div>
 		</div>

@@ -1,15 +1,18 @@
 import React from "react";
 import { FiTrash2, FiEdit, FiCheck, FiXCircle } from "react-icons/fi";
+import Color from "./Color";
 
 export default function EditNote({
 	id,
 	title,
 	text,
 	date,
+	noteColor,
 	dayCreated,
 	saveNote,
 	toggleEdit,
 	deleteNote,
+	changeColor,
 }) {
 	const [editedText, setEditedText] = React.useState({
 		id: id,
@@ -17,6 +20,7 @@ export default function EditNote({
 		dayCreated: dayCreated,
 		title: title,
 		text: text,
+		noteColor: noteColor,
 	});
 
 	function handleEdit(event) {
@@ -48,6 +52,7 @@ export default function EditNote({
 				onChange={handleEdit}
 				rows="1"
 				cols="2"
+				maxLength="20"
 				placeholder="Title"
 			></textarea>
 			<textarea
