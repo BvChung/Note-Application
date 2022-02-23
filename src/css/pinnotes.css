@@ -12,15 +12,10 @@
 	overflow-wrap: break-word;
 	/* overflow: auto; */
 
-	background-color: #74c0fc;
+	/* background-color: #74c0fc; */
 	box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
 	border-radius: 9px;
 	padding: 1.2rem;
-
-	/* animation-duration: 1.5s;
-	animation-name: slidein;
-	animation-iteration-count: 1;
-	animation-direction: alternate; */
 }
 
 .pin-container {
@@ -33,10 +28,6 @@
 	gap: 2.4rem;
 }
 
-.pin-note {
-	background-color: #96f2d7;
-}
-
 .pin {
 	width: 100%;
 	align-items: center;
@@ -45,8 +36,4 @@
 	/* overflow-y: auto; */
 
 	gap: 1.2rem;
-
-	/* border-bottom: 3px solid #dee2e6; */
-
-	/* justify-content: center; */
 }

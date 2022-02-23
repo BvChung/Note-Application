@@ -133,11 +133,10 @@
 	gap: 1.2rem;
 }
 
-.pin-btn,
-.date-btn {
-	font-size: 1rem;
-	font-family: inherit;
-	font-weight: 700;
+.search-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	background-color: transparent;
 	padding: 0.8rem;
 	border-radius: 50%;
@@ -151,14 +150,8 @@
 	height: 1.6rem;
 }
 
-.pin-btn:hover,
-.pin-btn:focus,
-.date-btn:hover,
-.date-btn:focus {
+.search-btn:hover,
+.search-btn:focus {
 	color: #212529;
-	/* padding: 3.6rem; */
 	background-color: #e9ecef;
-}
-
-.date-btn {
 }
