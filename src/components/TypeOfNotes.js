@@ -7,9 +7,11 @@ export default function Notes({
 	title,
 	text,
 	date,
+	noteColor,
 	dayCreated,
 	deleteNote,
 	saveNote,
+	saveNoteColor,
 	toggleEdit,
 	getPinNoteData,
 }) {
@@ -28,6 +30,19 @@ export default function Notes({
 		setPin((prevPin) => !prevPin);
 	}
 
+	const [saveColor, setSaveColor] = React.useState(noteColor || "");
+	function changeColor(color) {
+		setSaveColor(color);
+	}
+
+	React.useEffect(() => {
+		saveNoteColor({
+			id: id,
+			noteColor: saveColor,
+		});
+	}, [saveColor]);
+	// console.log(noteColor);
+
 	return (
 		<div>
 			{!edit ? (
@@ -36,6 +51,9 @@ export default function Notes({
 					title={title}
 					text={text}
 					date={date}
+					noteColor={noteColor}
+					saveColor={saveColor}
+					saveNoteColor={saveNoteColor}
 					dayCreated={dayCreated}
 					saveNote={saveNote}
 					deleteNote={deleteNote}
@@ -44,6 +62,7 @@ export default function Notes({
 					toggleCompleted={toggleCompleted}
 					togglePin={togglePin}
 					getPinNoteData={getPinNoteData}
+					changeColor={changeColor}
 				/>
 			) : (
 				<EditNote
@@ -51,11 +70,13 @@ export default function Notes({
 					title={title}
 					text={text}
 					date={date}
+					noteColor={noteColor}
 					dayCreated={dayCreated}
 					saveNote={saveNote}
 					toggleEdit={toggleEdit}
 					completedNote={completedNote}
 					deleteNote={deleteNote}
+					changeColor={changeColor}
 				/>
 			)}
 		</div>

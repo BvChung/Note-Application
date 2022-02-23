@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/search.css";
-import { BiSearch } from "react-icons/bi";
+import { BiSearch, BiNote } from "react-icons/bi";
 import { FiTrash, FiPlus } from "react-icons/fi";
 import { BsSortNumericDown, BsSortNumericUp, BsPinAngle } from "react-icons/bs";
 import { GrNote } from "react-icons/gr";
@@ -13,7 +13,8 @@ export default function Search({
 	sortDateAscending,
 	sortDateDescending,
 	deleteAllNotes,
-	openPinNotes,
+	toggleNoteView,
+	switchNoteView,
 }) {
 	const [tooltipOpened, setTooltipOpened] = React.useState(false);
 
@@ -42,21 +43,34 @@ export default function Search({
 						withArrow
 						color="gray"
 					>
-						<button className="pin-btn" onClick={toggleCreateNote}>
+						<button className="search-btn" onClick={toggleCreateNote}>
 							<FiPlus className="logo" />
 						</button>
 					</Tooltip>
 
-					<Tooltip
-						label="Pinned Notes"
-						tooltipId={tooltipOpened}
-						withArrow
-						color="gray"
-					>
-						<button className="pin-btn" onClick={openPinNotes}>
-							<BsPinAngle className="logo" />
-						</button>
-					</Tooltip>
+					{switchNoteView ? (
+						<Tooltip
+							label="All Notes"
+							tooltipId={tooltipOpened}
+							withArrow
+							color="gray"
+						>
+							<button className="search-btn" onClick={toggleNoteView}>
+								<BiNote className="logo" />
+							</button>
+						</Tooltip>
+					) : (
+						<Tooltip
+							label="Pinned Notes"
+							tooltipId={tooltipOpened}
+							withArrow
+							color="gray"
+						>
+							<button className="search-btn" onClick={toggleNoteView}>
+								<BsPinAngle className="logo" />
+							</button>
+						</Tooltip>
+					)}
 
 					<Tooltip
 						label="Sort Ascending"
@@ -64,7 +78,7 @@ export default function Search({
 						withArrow
 						color="gray"
 					>
-						<button className="date-btn">
+						<button className="search-btn">
 							<BsSortNumericUp onClick={sortDateAscending} className="logo" />
 						</button>
 					</Tooltip>
@@ -75,7 +89,7 @@ export default function Search({
 						withArrow
 						color="gray"
 					>
-						<button className="date-btn">
+						<button className="search-btn">
 							<BsSortNumericDown
 								onClick={sortDateDescending}
 								className="logo"
@@ -89,7 +103,7 @@ export default function Search({
 						withArrow
 						color="gray"
 					>
-						<button className="pin-btn" onClick={deleteAllNotes}>
+						<button className="search-btn" onClick={deleteAllNotes}>
 							<FiTrash className="logo" />
 						</button>
 					</Tooltip>
@@ -102,7 +116,7 @@ export default function Search({
 			</div>
 
 			<div className="sort">
-				<button className="date-btn">
+				<button className="search-btn">
 					<BsSortNumericUp onClick={sortDateAscending} className="logo" />
 				</button>
 

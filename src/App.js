@@ -1,9 +1,9 @@
 import React from "react";
 import "./index.css";
+
 import { nanoid } from "nanoid";
 import Search from "./components/Search";
 import NotesContainer from "./components/NotesContainer";
-import PinNoteContainer from "./components/PinNoteContainer";
 import { ScrollArea } from "@mantine/core";
 
 export default function App() {
@@ -53,6 +53,7 @@ export default function App() {
 				dayCreated: +date.getTime(),
 				text: noteData.text,
 				title: noteData.title,
+				noteColor: noteData.noteColor,
 			};
 
 			// Prevent blank notes from being added
@@ -63,10 +64,28 @@ export default function App() {
 	}
 
 	function deleteNote(id) {
-		console.log("note deleted", id);
 		setNotes((prevNotes) =>
 			prevNotes.filter((note) => {
 				return note.id !== id;
+			})
+		);
+	}
+
+	function saveNoteColor(noteData) {
+		const { noteColor, id } = noteData;
+
+		setNotes((prevNotes) =>
+			prevNotes.map((note) => {
+				if (note.id === id) {
+					return {
+						...note,
+						noteColor: noteColor,
+					};
+				} else {
+					return {
+						...note,
+					};
+				}
 			})
 		);
 	}
@@ -78,9 +97,9 @@ export default function App() {
 		setNoteSearch(value);
 	}
 
-	const [opened, setOpened] = React.useState(false);
-	function openPinNotes() {
-		setOpened((prevSet) => !prevSet);
+	const [switchNoteView, setSwitchNoteView] = React.useState(false);
+	function toggleNoteView() {
+		setSwitchNoteView((prevSet) => !prevSet);
 	}
 
 	const [createNote, setCreateNote] = React.useState(false);
@@ -142,6 +161,7 @@ export default function App() {
 
 	function unpinNote(data) {
 		// Removes pinned note from arr
+		console.log(data);
 		setPinNoteData((prevNotes) =>
 			prevNotes.filter((note) => {
 				return note.id !== data.id;
@@ -155,7 +175,9 @@ export default function App() {
 			dayCreated: data.dayCreated,
 			title: data.title,
 			text: data.text,
+			noteColor: data.noteColor,
 		};
+		console.log(`returned: ${returnNote}`);
 
 		setNotes((prevNotes) => [...prevNotes, returnNote]);
 	}
@@ -182,25 +204,24 @@ export default function App() {
 					sortDateAscending={sortDateAscending}
 					sortDateDescending={sortDateDescending}
 					deleteAllNotes={deleteAllNotes}
-					openPinNotes={openPinNotes}
+					toggleNoteView={toggleNoteView}
+					switchNoteView={switchNoteView}
 				/>
-				<div className="notes-container">
-					<PinNoteContainer
-						pinNoteData={pinNoteData}
-						unpinNote={unpinNote}
-						deletePinNote={deletePinNote}
-						opened={opened}
-						openPinNotes={openPinNotes}
-					/>
-
+				<div className="notes-container-margin">
 					<NotesContainer
 						notes={notes.filter((note) =>
 							note.text.toLowerCase().includes(searchNote.toLowerCase())
 						)}
 						createNote={createNote}
 						saveNote={saveNote}
+						saveNoteColor={saveNoteColor}
 						deleteNote={deleteNote}
 						getPinNoteData={getPinNoteData}
+						pinNoteData={pinNoteData}
+						unpinNote={unpinNote}
+						deletePinNote={deletePinNote}
+						switchNoteView={switchNoteView}
+						toggleNoteView={toggleNoteView}
 					/>
 				</div>
 			</div>
