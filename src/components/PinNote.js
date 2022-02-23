@@ -7,8 +7,8 @@ import "../css/pinnotes.css";
 export default function PinNote({ pinNoteData, unpinNote, deletePinNote }) {
 	const displayPinnedNote = pinNoteData.map((data) => {
 		return (
-			<div key={data.id} className="notes pin-note  ">
-				<div className="note-details ">
+			<div key={data.id} className={`notes pin-note ${data.noteColor}`}>
+				<div className="note-details">
 					<small className="date">{data.date}</small>
 					<BsPinAngle onClick={() => unpinNote(data)} />
 					<FiTrash onClick={() => deletePinNote(data.id)} />
@@ -24,9 +24,7 @@ export default function PinNote({ pinNoteData, unpinNote, deletePinNote }) {
 	return (
 		<ScrollArea>
 			<div className="pin">
-				<div className="pin-container">
-					{pinNoteData ? displayPinnedNote : ""}
-				</div>
+				<div className="notes-list">{pinNoteData ? displayPinnedNote : ""}</div>
 			</div>
 		</ScrollArea>
 	);
