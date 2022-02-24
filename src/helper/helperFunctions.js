@@ -1,3 +1,12 @@
+// export function autosizeTextarea(e) {
+// 	e.target.style.height = "inherit";
+
+// 	e.target.style.height = `${e.target.scrollHeight}px`;
+
+// 	// In case you have a limitation
+// 	// e.target.style.height = `${Math.min(e.target.scrollHeight, limit)}px`;
+// }
+
 export const displayColors = [
 	{ label: "Red", background: "red-bg", className: "red" },
 	{ label: "Orange", background: "orange-bg", className: "orange" },
