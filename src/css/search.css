@@ -36,73 +36,37 @@
 	background-color: transparent;
 	font-size: 1.2rem;
 }
+
+.searchbar-icon-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.8rem;
+}
+
+.searchbar-icon {
+	color: #212529;
+}
+
+.close-icon {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
 .searchbar:focus {
 	outline: none;
 }
 
-/* .search {
-	--size: 60px;
-	border: 2px solid #38d9a9;
+.close-container {
 	display: flex;
-	border-radius: 100px;
-	
-	font-size: 1.25em;
-	position: relative;
-	width: 50px;
-	height: 50px;
-	transition: width 0.8s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-	padding: 3px;
+	align-items: center;
+	justify-content: center;
+	border-right: 1px solid #212529;
+	padding-right: 0.8rem;
 }
 
-.search__input {
-	border: 0;
-	padding: 0.25rem 1rem;
-	flex-grow: 1;
-	outline: 0;
-	z-index: 2;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	background: transparent;
-	opacity: 0;
-	cursor: pointer;
-}
-
-.search__submit {
-	font-size: 1.5rem;
-	margin-left: auto;
-	background: 0;
-	border: 0;
-	cursor: pointer;
-	border-radius: 50%;
-	transition: background 200ms ease-out;
-	width: calc(50px - 10px);
-	height: calc(50px - 10px);
-	color: #212529;
-}
-
-.search:focus-within {
-	width: 100%;
-}
-.search:focus-within .search__input {
-	opacity: 1;
-	z-index: initial;
-	cursor: initial;
-	width: calc(100% - 60px);
-}
-.search:focus-within .search__submit {
-	background: #38d9a9;
-	color: white;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-}
-.search:focus-within .search__submit:hover,
-.search:focus-within .search__submit:focus {
-	outline: 0;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.65);
-} */
-/* -- */
+/*  */
 
 .nav-search {
 	height: 4rem;
@@ -133,24 +97,6 @@
 .search-icon {
 	width: 1.6rem;
 	height: 1.6rem;
-}
-
-.search-box {
-	font-family: inherit;
-	font-size: 1.2rem;
-
-	padding: 0.6rem 0.8rem;
-	/* height: 99%; */
-	width: 100%;
-
-	border: none;
-	/* box-shadow: 0 1px rgba(0, 0, 0, 0.1); */
-}
-
-.search-box:focus-within {
-	/* outline: 2px solid #e6fcf5; */
-	outline: 1px solid #e6fcf5;
-	border-radius: 9px;
 }
 
 .sort {
