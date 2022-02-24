@@ -21,8 +21,7 @@ export default function Search({
 	return (
 		<div className="nav-search">
 			<div className="nav-content">
-				<GrNote />
-				<div className="search">
+				{/* <div className="search">
 					<input
 						type="text"
 						className="search__input"
@@ -34,6 +33,18 @@ export default function Search({
 					<button className="search__submit" aria-label="submit search">
 						<BiSearch className="search-icon" />
 					</button>
+				</div> */}
+				<div className="nav-searchbar">
+					<input
+						type="text"
+						className="searchbar"
+						placeholder="Search for note..."
+						aria-label="search"
+						placeholder="Search for note"
+						value={searchNote}
+						onChange={handleNoteSearch}
+					></input>
+					<BiSearch className="searchbar-icon" />
 				</div>
 
 				<div className="sort">

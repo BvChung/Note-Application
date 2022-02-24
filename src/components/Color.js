@@ -4,7 +4,7 @@ import { Tooltip, Popover } from "@mantine/core";
 import { MdOutlineColorLens } from "react-icons/md";
 import { displayColors } from "../helper/helperFunctions";
 
-export default function Color({ changeColor }) {
+export default function Color({ changeColor, currentlyEditing, handleEdit }) {
 	const [opened, setOpened] = React.useState(false);
 	const [tooltipOpened, setTooltipOpened] = React.useState(false);
 
@@ -32,8 +32,12 @@ export default function Color({ changeColor }) {
 								<Tooltip
 									key={color.label}
 									label={color.label}
-									onClick={() => {
+									onClick={(event) => {
 										changeColor(color.background);
+
+										if (currentlyEditing) {
+											handleEdit(event, color.background);
+										}
 									}}
 								>
 									<div className={color.className}>&nbsp;</div>

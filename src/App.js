@@ -22,7 +22,7 @@ export default function App() {
 		const date = new Date();
 		const currentDate = date.toLocaleString("en-US", {
 			day: "numeric",
-			month: "numeric",
+			month: "short",
 			year: "numeric",
 		});
 

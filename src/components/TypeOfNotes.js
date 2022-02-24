@@ -71,6 +71,7 @@ export default function Notes({
 					text={text}
 					date={date}
 					noteColor={noteColor}
+					saveNoteColor={saveNoteColor}
 					dayCreated={dayCreated}
 					saveNote={saveNote}
 					toggleEdit={toggleEdit}

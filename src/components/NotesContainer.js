@@ -22,12 +22,15 @@ export default function NoteList({
 		<div>
 			{!switchNoteView ? (
 				<div className="transition">
-					<div>
-						{createNote && <AddNote notes={notes} saveNote={saveNote} />}
-					</div>
+					{createNote && (
+						<div className="addnote-bg animation">
+							<AddNote notes={notes} saveNote={saveNote} />
+						</div>
+					)}
 
 					{/* Iterate through notes data and render Notes */}
-					<div className="notes-list">
+
+					<div className="notes-list ">
 						{notes.map((note) => {
 							return (
 								<TypeOfNotes

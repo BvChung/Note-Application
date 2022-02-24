@@ -1,6 +1,8 @@
 import React from "react";
 import { FiTrash2, FiEdit, FiCheck, FiXCircle } from "react-icons/fi";
 import Color from "./Color";
+import { ScrollArea } from "@mantine/core";
+import TextareaAutosize from "react-textarea-autosize";
 
 export default function EditNote({
 	id,
@@ -12,8 +14,11 @@ export default function EditNote({
 	saveNote,
 	toggleEdit,
 	deleteNote,
+	saveNoteColor,
 	changeColor,
 }) {
+	const currentlyEditing = true;
+
 	const [editedText, setEditedText] = React.useState({
 		id: id,
 		date: date,
@@ -23,46 +28,77 @@ export default function EditNote({
 		noteColor: noteColor,
 	});
 
-	function handleEdit(event) {
+	function handleEdit(event, color) {
 		const { name, value } = event.target;
-		setEditedText((prevEditText) => {
-			return {
-				...prevEditText,
-				[name]: value,
-			};
-		});
+
+		if (color) {
+			setEditedText((prevEditText) => {
+				return {
+					...prevEditText,
+					noteColor: color,
+				};
+			});
+		} else {
+			setEditedText((prevEditText) => {
+				return {
+					...prevEditText,
+					[name]: value,
+				};
+			});
+		}
 	}
 
 	return (
-		<div className="note new">
+		<div className={`note ${noteColor}`}>
 			<div className="note-details">
-				<FiTrash2 onClick={() => deleteNote(id)} className="trash-icon" />
-				<button
-					onClick={() => {
-						saveNote(editedText);
-						toggleEdit();
-					}}
-				>
-					Done edit
-				</button>
+				<small className="date">{date}</small>
+
+				<div className="note-tools">
+					<Color
+						// key={id}
+						id={id}
+						changeColor={changeColor}
+						noteColor={noteColor}
+						saveNoteColor={saveNoteColor}
+						currentlyEditing={currentlyEditing}
+						handleEdit={handleEdit}
+					/>
+					<button
+						onClick={() => {
+							saveNote(editedText);
+							toggleEdit();
+						}}
+					>
+						Done edit
+					</button>
+				</div>
 			</div>
-			<textarea
-				name="title"
-				value={editedText.title}
-				onChange={handleEdit}
-				rows="1"
-				cols="2"
-				maxLength="20"
-				placeholder="Title"
-			></textarea>
-			<textarea
+
+			<ScrollArea>
+				<div className="edit-container">
+					<TextareaAutosize
+						name="title"
+						value={editedText.title}
+						onChange={handleEdit}
+						placeholder="Add a title..."
+						className="note-title"
+					/>
+
+					<TextareaAutosize
+						name="text"
+						value={editedText.text}
+						onChange={handleEdit}
+						placeholder="Take a note..."
+						className="note-text"
+					/>
+				</div>
+			</ScrollArea>
+			{/* <TextareaAutosize
 				name="text"
 				value={editedText.text}
 				onChange={handleEdit}
-				rows="6"
-				cols="10"
 				placeholder="Type to add a note"
-			></textarea>
+			/> */}
 		</div>
 	);
 }
