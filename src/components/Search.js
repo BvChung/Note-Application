@@ -3,8 +3,9 @@ import "../css/search.css";
 import { BiSearch, BiNote } from "react-icons/bi";
 import { FiTrash, FiPlus } from "react-icons/fi";
 import { BsSortNumericDown, BsSortNumericUp, BsPinAngle } from "react-icons/bs";
-import { GrNote } from "react-icons/gr";
+import { MdClose } from "react-icons/md";
 import { Tooltip } from "@mantine/core";
+import { useClearSearchText } from "../App";
 
 export default function Search({
 	searchNote,
@@ -17,6 +18,7 @@ export default function Search({
 	switchNoteView,
 }) {
 	const [tooltipOpened, setTooltipOpened] = React.useState(false);
+	const clearSearchText = useClearSearchText();
 
 	return (
 		<div className="nav-search">
@@ -44,7 +46,23 @@ export default function Search({
 						value={searchNote}
 						onChange={handleNoteSearch}
 					></input>
-					<BiSearch className="searchbar-icon" />
+
+					<div className="searchbar-icon-container">
+						<div className="close-container">
+							<Tooltip
+								label="Clear"
+								tooltipId={tooltipOpened}
+								withArrow
+								color="gray"
+							>
+								<MdClose
+									onClick={clearSearchText}
+									className="searchbar-icon close-icon"
+								/>
+							</Tooltip>
+						</div>
+						<BiSearch className="searchbar-icon" />
+					</div>
 				</div>
 
 				<div className="sort">

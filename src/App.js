@@ -1,10 +1,14 @@
 import React from "react";
 import "./index.css";
-
 import { nanoid } from "nanoid";
 import Search from "./components/Search";
 import NotesContainer from "./components/NotesContainer";
 import { ScrollArea } from "@mantine/core";
+
+const ClearSearchText = React.createContext();
+export function useClearSearchText() {
+	return React.useContext(ClearSearchText);
+}
 
 export default function App() {
 	// Note ----------------------------
@@ -95,6 +99,10 @@ export default function App() {
 	function handleNoteSearch(event) {
 		const { value } = event.target;
 		setNoteSearch(value);
+	}
+	function clearSearch(event) {
+		event.target.value = "";
+		setNoteSearch("");
 	}
 
 	const [switchNoteView, setSwitchNoteView] = React.useState(false);
@@ -197,16 +205,18 @@ export default function App() {
 	return (
 		<ScrollArea>
 			<div className="app-container">
-				<Search
-					searchNote={searchNote}
-					handleNoteSearch={handleNoteSearch}
-					toggleCreateNote={toggleCreateNote}
-					sortDateAscending={sortDateAscending}
-					sortDateDescending={sortDateDescending}
-					deleteAllNotes={deleteAllNotes}
-					toggleNoteView={toggleNoteView}
-					switchNoteView={switchNoteView}
-				/>
+				<ClearSearchText.Provider value={clearSearch}>
+					<Search
+						searchNote={searchNote}
+						handleNoteSearch={handleNoteSearch}
+						toggleCreateNote={toggleCreateNote}
+						sortDateAscending={sortDateAscending}
+						sortDateDescending={sortDateDescending}
+						deleteAllNotes={deleteAllNotes}
+						toggleNoteView={toggleNoteView}
+						switchNoteView={switchNoteView}
+					/>
+				</ClearSearchText.Provider>
 				<div className="notes-container-margin">
 					<NotesContainer
 						notes={notes.filter((note) =>
@@ -217,7 +227,10 @@ export default function App() {
 						saveNoteColor={saveNoteColor}
 						deleteNote={deleteNote}
 						getPinNoteData={getPinNoteData}
-						pinNoteData={pinNoteData}
+						pinNoteData={pinNoteData.filter((note) =>
+							note.text.toLowerCase().includes(searchNote.toLowerCase())
+						)}
+						// pinNoteData={pinNoteData}
 						unpinNote={unpinNote}
 						deletePinNote={deletePinNote}
 						switchNoteView={switchNoteView}

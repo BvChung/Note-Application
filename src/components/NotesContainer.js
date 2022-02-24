@@ -4,6 +4,7 @@ import "../css/addnote.css";
 import AddNote from "./AddNote";
 import TypeOfNotes from "./TypeOfNotes";
 import PinNote from "./PinNote";
+import Masonry from "@mui/lab/Masonry";
 
 export default function NoteList({
 	notes,
@@ -31,37 +32,54 @@ export default function NoteList({
 					{/* Iterate through notes data and render Notes */}
 
 					<div className="notes-list ">
-						{notes.map((note) => {
+						<Masonry
+							columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
+							spacing={2}
+						>
+							{notes.map((note) => {
+								return (
+									<TypeOfNotes
+										key={note.id}
+										id={note.id}
+										title={note.title}
+										text={note.text}
+										noteColor={note.noteColor}
+										date={note.date}
+										dayCreated={note.dayCreated}
+										deleteNote={deleteNote}
+										saveNote={saveNote}
+										getPinNoteData={getPinNoteData}
+										saveNoteColor={saveNoteColor}
+										pinNoteData={pinNoteData}
+										unpinNote={unpinNote}
+										deletePinNote={deletePinNote}
+										openPinNotes={openPinNotes}
+									/>
+								);
+							})}
+						</Masonry>
+					</div>
+				</div>
+			) : (
+				<div className="notes-list">
+					<Masonry columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }} spacing={2}>
+						{pinNoteData.map((pinNote) => {
 							return (
-								<TypeOfNotes
-									key={note.id}
-									id={note.id}
-									title={note.title}
-									text={note.text}
-									noteColor={note.noteColor}
-									date={note.date}
-									dayCreated={note.dayCreated}
-									deleteNote={deleteNote}
-									saveNote={saveNote}
-									getPinNoteData={getPinNoteData}
-									saveNoteColor={saveNoteColor}
-									pinNoteData={pinNoteData}
+								<PinNote
+									key={pinNote.id}
+									id={pinNote.id}
+									noteColor={pinNote.noteColor}
+									dayCreated={pinNote.dayCreated}
+									date={pinNote.date}
+									text={pinNote.text}
+									title={pinNote.title}
 									unpinNote={unpinNote}
 									deletePinNote={deletePinNote}
 									openPinNotes={openPinNotes}
 								/>
 							);
 						})}
-					</div>
-				</div>
-			) : (
-				<div>
-					<PinNote
-						pinNoteData={pinNoteData}
-						unpinNote={unpinNote}
-						deletePinNote={deletePinNote}
-						openPinNotes={openPinNotes}
-					/>
+					</Masonry>
 				</div>
 			)}
 		</div>
