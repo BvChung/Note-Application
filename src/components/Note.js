@@ -2,8 +2,7 @@ import React from "react";
 import Color from "./Color";
 import { FiTrash, FiEdit, FiCheck, FiXCircle } from "react-icons/fi";
 import { BsPinAngle } from "react-icons/bs";
-import { Menu, createStyles, Tooltip, Modal, ScrollArea } from "@mantine/core";
-import Masonry from "react-masonry-css";
+import { Menu, Tooltip, Modal, ScrollArea } from "@mantine/core";
 
 export default function NewNote({
 	id,
@@ -23,31 +22,27 @@ export default function NewNote({
 }) {
 	const completedClassName = completedNote ? "completed" : "";
 
-	const useStyles = createStyles((theme) => ({
-		root: {
-			fontFamily: "Inter",
-			color: "#212529",
-			fontSize: theme.fontSizes.md,
-		},
-		itemHovered: {
-			backgroundColor: "#f1f3f5",
-		},
-	}));
-
 	const [tooltipOpened, setTooltipOpened] = React.useState(false);
 
 	function Tools() {
-		const { classes } = useStyles();
 		return (
 			<Tooltip label="More" opened={tooltipOpened}>
 				<Menu
 					// trigger="hover"
 					delay={300}
 					size="sm"
-					classNames={classes}
 					className="size"
 					withArrow
-					styles={{ body: { color: "red" } }}
+					styles={{
+						root: {
+							fontFamily: "inherit",
+							color: "#212529",
+						},
+						itemHovered: {
+							backgroundColor: "#f1f3f5",
+						},
+						body: { color: "red" },
+					}}
 					onMouseEnter={() => setTooltipOpened(true)}
 					onMouseLeave={() => setTooltipOpened(false)}
 				>
@@ -96,7 +91,7 @@ export default function NewNote({
 	const [opened, setOpened] = React.useState(false);
 
 	return (
-		<div className={`note overflow-hidden ${noteColor}`}>
+		<div className={`note ${noteColor}`}>
 			<div className="note-details">
 				<small className="date">{date}</small>
 

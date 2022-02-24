@@ -1,5 +1,4 @@
 import React from "react";
-import { FiTrash2, FiEdit, FiCheck, FiXCircle } from "react-icons/fi";
 import Color from "./Color";
 import { ScrollArea } from "@mantine/core";
 import TextareaAutosize from "react-textarea-autosize";
