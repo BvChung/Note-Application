@@ -10,7 +10,8 @@ body {
 	font-size: 1.618rem;
 	line-height: 1.618rem;
 	color: #212529;
-	background-color: #f8f9fa;
+	background-color: #f9fafb;
+	/* background-color: #f8f9fa; */
 }
 
 .app-container {
@@ -19,19 +20,32 @@ body {
 }
 
 .notes-container-margin {
-	margin: 2.4rem 1.2rem;
+	/* margin: 2.4rem 1.2rem; */
 }
 
 .notes-list {
 	display: grid;
-	/* grid-template-columns: repeat(auto-fit, minmax(250px, 1.2fr)); */
-	grid-template-columns: repeat(2, 1fr);
-	grid-row: span 2;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1.2fr));
+	grid-template-rows: masonry;
+	/* grid-template-rows: repeat(auto-fit, minmax(250px, 1fr)); */
+	/* grid-template-columns: repeat(2, auto); */
+	/* grid-template-columns: 240px auto auto 240px; */
+
+	/* grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); */
 	/* grid-template-columns: repeat(2, 1fr); */
-	row-gap: 2.4rem;
+	/* row-gap: 2.4rem; */
+	gap: 2.4rem;
 
 	align-items: center;
 	justify-content: center;
+
+	margin: 0 4.8rem 2.4rem 4.8rem;
+}
+
+@media screen and (max-width: 750px) {
+	.notes-list {
+		grid-template-columns: 1fr;
+	}
 }
 
 .note-add {
@@ -51,24 +65,25 @@ body {
 
 .note {
 	font-weight: 400;
-	width: 27rem;
+	width: 100%;
+	height: 20rem;
+	/* height: min-content; */
 	/* width: min-content; */
+	background-color: #f8f9fa;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	font-size: 1.1rem;
-	justify-content: space-between;
 	overflow-wrap: break-word;
-	overflow: auto;
 	box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 3px;
 	border: 2px solid transparent;
 	border-radius: 9px;
-	padding: 0.8rem 1.2rem;
+	padding: 1rem 1.2rem;
 	animation: all 0.2s ease-in;
 }
 
 .note:hover {
-	border: 2px solid #fff;
+	border: 2px solid #f1f3f5;
 }
 
 .size {
@@ -79,7 +94,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	padding: 0.3rem 0;
-	border-bottom: 2px solid #fff;
+	border-bottom: 2px solid #f1f3f5;
 	align-items: center;
 	margin-bottom: 0.8rem;
 }
@@ -91,29 +106,71 @@ body {
 	gap: 0.4rem;
 }
 
+.note-title {
+	font-weight: 700;
+	font-size: 1rem;
+	margin-bottom: 0.4rem;
+}
+
+.note-text {
+	overflow: hidden;
+	font-size: 0.9rem;
+}
+
 .text-container {
-	margin-bottom: 2.4rem;
+	/* margin-bottom: 2.4rem; */
+	overflow: auto;
+	padding-right: 0.4rem;
 }
 
 .completed {
 	text-decoration: line-through;
 }
+/* Modal */
+.modal {
+	width: 100%;
+	height: max-content;
+}
+
+.modal-note-text,
+.modal-note-title {
+	font-size: 1.1rem;
+}
+
+.modal-note-title {
+	font-weight: 700;
+}
 
 /*  */
 .transition {
-	animation-name: fadeIn;
+	/* animation-name: fadeIn;
 	animation-duration: 3s;
-	animation-iteration-count: 1;
+	animation-iteration-count: 1; */
+}
+/*  */
+.edit-container {
+	display: flex;
+	flex-direction: column;
+	padding-right: 0.4rem;
+	/* align-items: center; */
 }
 
-@keyframes fadeIn {
-	from {
-		/* margin-left: 100%;
-		width: 300%; */
-	}
+/* Masonry */
+.my-masonry-grid {
+	display: -webkit-box; /* Not needed if autoprefixing */
+	display: -ms-flexbox; /* Not needed if autoprefixing */
+	display: flex;
+	margin-left: -30px; /* gutter size offset */
+	width: auto;
+}
+.my-masonry-grid_column {
+	padding-left: 30px; /* gutter size */
+	background-clip: padding-box;
+}
 
-	/* to {
-		margin-left: 0%;
-		width: 100%;
-	} */
+/* Style your items */
+.my-masonry-grid_column > div {
+	/* change div to reference your elements you put in <Masonry> */
+	background: grey;
+	margin-bottom: 30px;
 }

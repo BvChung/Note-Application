@@ -1,30 +1,51 @@
+.addnote-bg {
+	display: flex;
+	align-items: center;
+	/* background-color: #4b5c62; */
+	padding: 2.4rem 0;
+	margin-bottom: 2.4rem;
+	height: auto;
+	/* border-bottom: 2px solid #4b5c62; */
+	/* box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 0px; */
+}
+
 .add-note-container {
 	margin-bottom: 2.4rem;
 	padding: 1.2rem;
 	/* border-bottom: 2px solid black; */
 }
 
+.addnote-title {
+	text-align: center;
+	font-size: 1.6rem;
+	font-weight: 700;
+	color: #343a40;
+	margin-bottom: 1.2rem;
+}
+
 .noted {
 	font-weight: 400;
 	width: 35rem;
 	margin: 0 auto;
-	margin-bottom: 2.4rem;
+	/* margin-bottom: 2.4rem; */
 	display: flex;
 	flex-direction: column;
 	font-size: 1.1rem;
 	overflow-wrap: break-word;
 	overflow: auto;
-	box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 3px;
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 3px;
 	border-radius: 9px;
 	padding: 1rem 1.2rem;
-	background-color: #f1f3f5;
+	background-color: #e9ecef;
 }
 
 textarea {
 	background-color: transparent;
 	font-family: inherit;
 	font-size: inherit;
-	letter-spacing: 0.2px;
+	line-height: inherit;
+	color: #212529;
+
 	height: 1.8rem;
 	border: none;
 	resize: none;
@@ -44,8 +65,10 @@ textarea:focus {
 }
 
 .title {
-	margin-bottom: 0.6rem;
-	/* border-bottom: 2px solid #212529; */
+	overflow: hidden;
+	font-weight: 500;
+	margin-bottom: 1rem;
+	border-bottom: 2px solid #f1f3f5;
 }
 
 .text {
@@ -61,10 +84,31 @@ textarea:focus {
 .save {
 	border: none;
 	border-radius: 9px;
-	padding: 0.6rem 1.2rem;
+	padding: 0.6rem 1rem;
 	font-family: inherit;
+	font-size: 0.8rem;
 	font-weight: 600;
-	color: #fff;
-	background-color: #212529;
+	color: #212529;
+	background-color: transparent;
 	cursor: pointer;
+	transition: 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.save:hover {
+	background-color: #343a40;
+	color: #fff;
+}
+
+.animation {
+	animation-name: fadeIn;
+	animation-duration: 1s;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
