@@ -14,38 +14,80 @@ body {
 	/* background-color: #f8f9fa; */
 }
 
-.app-container {
-	/* height: 100vh; */
-	/* width: min(90%, 120rem); */
-}
-
 .notes-container-margin {
-	/* margin: 2.4rem 1.2rem; */
+	padding-top: 2.4rem;
 }
 
-.notes-list {
-	display: grid;
-	/* grid-template-columns: repeat(auto-fit, minmax(250px, 1.2fr)); */
+/* .app-container {
+	
+} */
 
-	/* grid-template-rows: repeat(auto-fit, minmax(250px, 1fr)); */
-	/* grid-template-columns: repeat(2, auto); */
-	/* grid-template-columns: 240px auto auto 240px; */
+.transition {
+	/* background-color: #f1f3f5; */
+	/* animation-name: fadeIn;
+	animation-duration: 3s;
+	animation-iteration-count: 1; */
+}
 
-	/* grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); */
-	/* grid-template-columns: repeat(2, 1fr); */
-	/* row-gap: 2.4rem; */
-	gap: 2.4rem;
-
-	/* align-items: center;
-	justify-content: center; */
-
+.notes-margin {
 	margin: 0 4.8rem 2.4rem 4.8rem;
 }
 
-@media screen and (max-width: 750px) {
-	.notes-list {
-		grid-template-columns: 1fr;
-	}
+.note-switch-display {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 4.8rem;
+	padding-top: 3.6rem;
+	/* height: ; */
+	background-color: #f1f3f5;
+}
+
+.note-switch-btn-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.6rem;
+}
+
+.switch-btn {
+	border: none;
+	/* background-color: #f1f3f5; */
+	background-color: inherit;
+	padding: 0.6rem 0.8rem;
+
+	/* border-radius: 9px; */
+	cursor: pointer;
+}
+
+.active-btn {
+	background-color: #f9fafb;
+	border-top: 2px solid #e9ecef;
+	border-right: 2px solid #e9ecef;
+	border-left: 2px solid #e9ecef;
+}
+
+.active-btn .switch-icon,
+.active-btn .switch-text {
+	color: #212529;
+}
+
+.switch-icon {
+	width: 1.8rem;
+	height: 1.8rem;
+	color: #495057;
+}
+
+.switch-text {
+	font-family: "Roboto";
+	color: #495057;
+	/* color: #f8f9fa; */
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+.notes-list {
+	margin: 0 4.8rem 2.4rem 4.8rem;
 }
 
 .note-add {
@@ -54,15 +96,7 @@ body {
 	justify-content: center;
 }
 
-.date {
-	background-color: #f1f3f5;
-	border-radius: 9px;
-	padding: 0.2rem 0.4rem;
-	font-size: 0.9rem;
-	color: #343a40;
-	font-weight: 600;
-}
-
+/* Individual notes--------------------------------------------*/
 .note {
 	font-weight: 400;
 	width: 100%;
@@ -83,7 +117,17 @@ body {
 }
 
 .note:hover {
-	border: 2px solid #f1f3f5;
+	/* border: 2px solid #f1f3f5; */
+	border: 2px solid #59546c;
+}
+
+.date {
+	background-color: #f1f3f5;
+	border-radius: 9px;
+	padding: 0.2rem 0.4rem;
+	font-size: 0.9rem;
+	color: #343a40;
+	font-weight: 600;
 }
 
 .size {
@@ -141,36 +185,19 @@ body {
 	font-weight: 700;
 }
 
-/*  */
-.transition {
-	/* animation-name: fadeIn;
-	animation-duration: 3s;
-	animation-iteration-count: 1; */
-}
-/*  */
+/* Edit note -------------------------------------------- */
 .edit-container {
 	display: flex;
 	flex-direction: column;
 	padding-right: 0.4rem;
+	margin-bottom: 0.8rem;
 	/* align-items: center; */
 }
 
-/* Masonry */
-.my-masonry-grid {
-	display: -webkit-box; /* Not needed if autoprefixing */
-	display: -ms-flexbox; /* Not needed if autoprefixing */
+.edit-save-container {
 	display: flex;
-	margin-left: -30px; /* gutter size offset */
-	width: auto;
-}
-.my-masonry-grid_column {
-	padding-left: 30px; /* gutter size */
-	background-clip: padding-box;
+	align-items: center;
+	justify-content: right;
 }
 
-/* Style your items */
-.my-masonry-grid_column > div {
-	/* change div to reference your elements you put in <Masonry> */
-	background: grey;
-	margin-bottom: 30px;
-}
+/*  */

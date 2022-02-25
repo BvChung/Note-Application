@@ -2,7 +2,8 @@
 	display: flex;
 	align-items: center;
 	/* background-color: #4b5c62; */
-	padding: 2.4rem 0;
+	padding: 0.4rem;
+
 	margin-bottom: 2.4rem;
 	height: auto;
 	/* border-bottom: 2px solid #4b5c62; */
@@ -25,7 +26,7 @@
 
 .noted {
 	font-weight: 400;
-	width: 35rem;
+	width: 50%;
 	margin: 0 auto;
 	/* margin-bottom: 2.4rem; */
 	display: flex;
@@ -36,20 +37,30 @@
 	box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 3px;
 	border-radius: 9px;
 	padding: 1rem 1.2rem;
-	background-color: #e9ecef;
+	background-color: #f8f9fa;
 }
 
-textarea {
-	background-color: transparent;
+.noted textarea {
+	background-color: #e9ecef;
 	font-family: inherit;
-	font-size: inherit;
+	font-size: 0.9rem;
 	line-height: inherit;
 	color: #212529;
-
 	height: 1.8rem;
 	border: none;
 	resize: none;
-	/* border-radius: 9px; */
+	border-radius: 9px;
+}
+textarea {
+	background-color: transparent;
+	font-family: inherit;
+	font-size: 0.9rem;
+	line-height: inherit;
+	color: #212529;
+	height: 1.8rem;
+	border: none;
+	resize: none;
+	border-radius: 9px;
 }
 
 textarea::placeholder {
