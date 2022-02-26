@@ -4,13 +4,24 @@ import { Tooltip, Popover } from "@mantine/core";
 import { MdOutlineColorLens } from "react-icons/md";
 import { displayColors } from "../helper/helperFunctions";
 
-export default function Color({ changeColor, currentlyEditing, handleEdit }) {
+export default function Color({
+	changeColor,
+	currentlyEditing,
+	handleEdit,
+	saveNoteColor,
+	id,
+}) {
 	const [opened, setOpened] = React.useState(false);
 	const [tooltipOpened, setTooltipOpened] = React.useState(false);
 
 	return (
 		<div>
-			<Tooltip label="Background Colors" tooltipId={tooltipOpened} color="gray">
+			<Tooltip
+				label="Background Colors"
+				tooltipId={tooltipOpened}
+				color="gray"
+				withArrow
+			>
 				<Popover
 					opened={opened}
 					onClose={() => setOpened(false)}
@@ -33,7 +44,11 @@ export default function Color({ changeColor, currentlyEditing, handleEdit }) {
 									key={color.label}
 									label={color.label}
 									onClick={(event) => {
-										changeColor(color.background);
+										// changeColor(color.background);
+										saveNoteColor({
+											noteColor: color.background,
+											id: id,
+										});
 
 										if (currentlyEditing) {
 											handleEdit(event, color.background);

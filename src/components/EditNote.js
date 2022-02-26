@@ -12,7 +12,6 @@ export default function EditNote({
 	dayCreated,
 	saveNote,
 	toggleEdit,
-	deleteNote,
 	saveNoteColor,
 	changeColor,
 }) {
@@ -62,14 +61,6 @@ export default function EditNote({
 						currentlyEditing={currentlyEditing}
 						handleEdit={handleEdit}
 					/>
-					<button
-						onClick={() => {
-							saveNote(editedText);
-							toggleEdit();
-						}}
-					>
-						Done edit
-					</button>
 				</div>
 			</div>
 
@@ -92,12 +83,17 @@ export default function EditNote({
 					/>
 				</div>
 			</ScrollArea>
-			{/* <TextareaAutosize
-				name="text"
-				value={editedText.text}
-				onChange={handleEdit}
-				placeholder="Type to add a note"
-			/> */}
+			<div className="edit-save-container">
+				<button
+					onClick={() => {
+						saveNote(editedText);
+						toggleEdit();
+					}}
+					className="save"
+				>
+					Save
+				</button>
+			</div>
 		</div>
 	);
 }

@@ -1,8 +1,12 @@
 import React from "react";
 import "../css/addnote.css";
 import TextareaAutosize from "react-textarea-autosize";
+import { MdClose } from "react-icons/md";
+import { useCloseAddNote } from "../App";
 
 export default function AddNote({ saveNote }) {
+	const closeAddNote = useCloseAddNote();
+
 	const [noteData, setNoteData] = React.useState({
 		id: null,
 		date: "",
@@ -43,7 +47,14 @@ export default function AddNote({ saveNote }) {
 			// onMouseLeave={() => setShow(false)}
 		>
 			<div className="addnote-title">
-				<p>Create a note</p>
+				<div className="add-close-btn-container">
+					<button onClick={closeAddNote} className="addnote-close-btn">
+						<MdClose className="addnote-close-icon" />
+					</button>
+				</div>
+				<div className="addnote-text-container">
+					<p className="addnote-text">Create a note</p>
+				</div>
 			</div>
 			<TextareaAutosize
 				className={`title ${show ? "" : "hidden"}`}
@@ -73,33 +84,4 @@ export default function AddNote({ saveNote }) {
 			</div>
 		</div>
 	);
-}
-
-{
-	/* <textarea
-				className={`title ${show ? "" : "hidden"}`}
-				name="title animation"
-				value={noteData.title}
-				onChange={handleNoteChange}
-				rows="1"
-				cols="2"
-				maxLength="40"
-				placeholder="Title"
-			></textarea> */
-}
-{
-	/* <textarea
-				className="text"
-				name="text"
-				value={noteData.text}
-				onChange={(event) => {
-					handleNoteChange(event);
-					// autosizeTextarea(event);
-				}}
-				onClick={(event) => {
-					toggleShow();
-					autosizeTextarea(event);
-				}}
-				placeholder="Take a note"
-			></textarea> */
 }

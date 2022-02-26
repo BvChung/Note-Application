@@ -3,11 +3,15 @@ import "./index.css";
 import { nanoid } from "nanoid";
 import Search from "./components/Search";
 import NotesContainer from "./components/NotesContainer";
-import { ScrollArea } from "@mantine/core";
+import SwitchView from "./components/SwitchView";
 
 const ClearSearchText = React.createContext();
 export function useClearSearchText() {
 	return React.useContext(ClearSearchText);
+}
+const CloseAddNote = React.createContext();
+export function useCloseAddNote() {
+	return React.useContext(CloseAddNote);
 }
 
 export default function App() {
@@ -32,8 +36,24 @@ export default function App() {
 
 		// noteData is an object containing id,data,text
 		// If noteData.id exists then the existing note is being edited
-		if (noteData.id) {
+		if (!switchNoteView && noteData.id) {
 			setNotes((prevNotes) =>
+				prevNotes.map((note) => {
+					if (note.id === noteData.id) {
+						return {
+							...noteData,
+							date: currentDate,
+							dayCreated: +date.getTime(),
+						};
+					} else {
+						return {
+							...note,
+						};
+					}
+				})
+			);
+		} else if (switchNoteView && noteData.id) {
+			setPinNoteData((prevNotes) =>
 				prevNotes.map((note) => {
 					if (note.id === noteData.id) {
 						return {
@@ -78,28 +98,46 @@ export default function App() {
 	function saveNoteColor(noteData) {
 		const { noteColor, id } = noteData;
 
-		setNotes((prevNotes) =>
-			prevNotes.map((note) => {
-				if (note.id === id) {
-					return {
-						...note,
-						noteColor: noteColor,
-					};
-				} else {
-					return {
-						...note,
-					};
-				}
-			})
-		);
+		if (switchNoteView) {
+			setPinNoteData((prevNotes) =>
+				prevNotes.map((note) => {
+					if (note.id === id) {
+						return {
+							...note,
+							noteColor: noteColor,
+						};
+					} else {
+						return {
+							...note,
+						};
+					}
+				})
+			);
+		} else {
+			setNotes((prevNotes) =>
+				prevNotes.map((note) => {
+					if (note.id === id) {
+						return {
+							...note,
+							noteColor: noteColor,
+						};
+					} else {
+						return {
+							...note,
+						};
+					}
+				})
+			);
+		}
 	}
 
-	// Sidebar ----------------------------
+	// Navbar ----------------------------
 	const [searchNote, setNoteSearch] = React.useState("");
 	function handleNoteSearch(event) {
 		const { value } = event.target;
 		setNoteSearch(value);
 	}
+
 	function clearSearch(event) {
 		event.target.value = "";
 		setNoteSearch("");
@@ -116,19 +154,35 @@ export default function App() {
 	}
 
 	function sortDateAscending() {
-		setNotes((prevNotes) =>
-			[...prevNotes].sort((a, b) => a.dayCreated - b.dayCreated)
-		);
+		if (switchNoteView) {
+			setPinNoteData((prevNotes) =>
+				[...prevNotes].sort((a, b) => a.dayCreated - b.dayCreated)
+			);
+		} else {
+			setNotes((prevNotes) =>
+				[...prevNotes].sort((a, b) => a.dayCreated - b.dayCreated)
+			);
+		}
 	}
 
 	function sortDateDescending() {
-		setNotes((prevNotes) =>
-			[...prevNotes].sort((a, b) => b.dayCreated - a.dayCreated)
-		);
+		if (switchNoteView) {
+			setPinNoteData((prevNotes) =>
+				[...prevNotes].sort((a, b) => b.dayCreated - a.dayCreated)
+			);
+		} else {
+			setNotes((prevNotes) =>
+				[...prevNotes].sort((a, b) => b.dayCreated - a.dayCreated)
+			);
+		}
 	}
 
 	function deleteAllNotes() {
-		setNotes([]);
+		if (switchNoteView) {
+			setPinNoteData([]);
+		} else {
+			setNotes([]);
+		}
 	}
 
 	// PinnedNotes ----------------------------
@@ -155,7 +209,7 @@ export default function App() {
 		};
 
 		setPinNoteData((prevPinData) => {
-			const pinDataArr = [...prevPinData, newPinData];
+			const pinDataArr = [newPinData, ...prevPinData];
 
 			// Prevent the same note from being pinned
 			const filteredData = pinDataArr.filter(
@@ -169,7 +223,7 @@ export default function App() {
 
 	function unpinNote(data) {
 		// Removes pinned note from arr
-		console.log(data);
+
 		setPinNoteData((prevNotes) =>
 			prevNotes.filter((note) => {
 				return note.id !== data.id;
@@ -185,9 +239,8 @@ export default function App() {
 			text: data.text,
 			noteColor: data.noteColor,
 		};
-		console.log(`returned: ${returnNote}`);
 
-		setNotes((prevNotes) => [...prevNotes, returnNote]);
+		setNotes((prevNotes) => [returnNote, ...prevNotes]);
 	}
 
 	function deletePinNote(id) {
@@ -201,23 +254,28 @@ export default function App() {
 
 	// console.log(notes);
 	// console.log(pinNoteData);
+	// console.log(switchNoteView);
 
 	return (
-		<ScrollArea>
-			<div className="app-container">
-				<ClearSearchText.Provider value={clearSearch}>
-					<Search
-						searchNote={searchNote}
-						handleNoteSearch={handleNoteSearch}
-						toggleCreateNote={toggleCreateNote}
-						sortDateAscending={sortDateAscending}
-						sortDateDescending={sortDateDescending}
-						deleteAllNotes={deleteAllNotes}
-						toggleNoteView={toggleNoteView}
-						switchNoteView={switchNoteView}
-					/>
-				</ClearSearchText.Provider>
-				<div className="notes-container-margin">
+		<div className="app-container">
+			<ClearSearchText.Provider value={clearSearch}>
+				<Search
+					searchNote={searchNote}
+					handleNoteSearch={handleNoteSearch}
+					toggleCreateNote={toggleCreateNote}
+					sortDateAscending={sortDateAscending}
+					sortDateDescending={sortDateDescending}
+					deleteAllNotes={deleteAllNotes}
+					toggleNoteView={toggleNoteView}
+					switchNoteView={switchNoteView}
+				/>
+			</ClearSearchText.Provider>
+			<SwitchView
+				switchNoteView={switchNoteView}
+				toggleNoteView={toggleNoteView}
+			/>
+			<div className="notes-container-padding">
+				<CloseAddNote.Provider value={toggleCreateNote}>
 					<NotesContainer
 						notes={notes.filter((note) =>
 							note.text.toLowerCase().includes(searchNote.toLowerCase())
@@ -230,14 +288,13 @@ export default function App() {
 						pinNoteData={pinNoteData.filter((note) =>
 							note.text.toLowerCase().includes(searchNote.toLowerCase())
 						)}
-						// pinNoteData={pinNoteData}
 						unpinNote={unpinNote}
 						deletePinNote={deletePinNote}
 						switchNoteView={switchNoteView}
 						toggleNoteView={toggleNoteView}
 					/>
-				</div>
+				</CloseAddNote.Provider>
 			</div>
-		</ScrollArea>
+		</div>
 	);
 }
