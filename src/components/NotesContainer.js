@@ -3,7 +3,6 @@ import "../index.css";
 import "../css/addnote.css";
 import AddNote from "./AddNote";
 import TypeOfNotes from "./TypeOfNotes";
-import PinNote from "./PinNote";
 import Masonry from "@mui/lab/Masonry";
 
 export default function NoteList({
@@ -20,7 +19,7 @@ export default function NoteList({
 	deletePinNote,
 }) {
 	return (
-		<div>
+		<>
 			{!switchNoteView ? (
 				<div className="transition">
 					{createNote && (
@@ -29,12 +28,12 @@ export default function NoteList({
 						</div>
 					)}
 
-					{/* Iterate through notes data and render Notes */}
-
-					<div className="notes-list ">
+					<div className="notes-margin ">
+						{/* Iterate through notes data and render Notes */}
 						<Masonry
 							columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
-							spacing={2}
+							spacing={3}
+							className="mason-margin"
 						>
 							{notes.map((note) => {
 								return (
@@ -46,14 +45,15 @@ export default function NoteList({
 										noteColor={note.noteColor}
 										date={note.date}
 										dayCreated={note.dayCreated}
-										deleteNote={deleteNote}
+										openPinNotes={openPinNotes}
 										saveNote={saveNote}
+										deleteNote={deleteNote}
 										getPinNoteData={getPinNoteData}
 										saveNoteColor={saveNoteColor}
 										pinNoteData={pinNoteData}
 										unpinNote={unpinNote}
 										deletePinNote={deletePinNote}
-										openPinNotes={openPinNotes}
+										switchNoteView={switchNoteView}
 									/>
 								);
 							})}
@@ -61,27 +61,37 @@ export default function NoteList({
 					</div>
 				</div>
 			) : (
-				<div className="notes-list">
-					<Masonry columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }} spacing={2}>
+				<div className="notes-margin">
+					<Masonry
+						columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
+						spacing={2}
+						className="mason-margin"
+					>
 						{pinNoteData.map((pinNote) => {
 							return (
-								<PinNote
+								<TypeOfNotes
 									key={pinNote.id}
 									id={pinNote.id}
-									noteColor={pinNote.noteColor}
-									dayCreated={pinNote.dayCreated}
-									date={pinNote.date}
-									text={pinNote.text}
 									title={pinNote.title}
+									text={pinNote.text}
+									noteColor={pinNote.noteColor}
+									date={pinNote.date}
+									dayCreated={pinNote.dayCreated}
+									openPinNotes={openPinNotes}
+									saveNote={saveNote}
+									deleteNote={deleteNote}
+									getPinNoteData={getPinNoteData}
+									saveNoteColor={saveNoteColor}
+									pinNoteData={pinNoteData}
 									unpinNote={unpinNote}
 									deletePinNote={deletePinNote}
-									openPinNotes={openPinNotes}
+									switchNoteView={switchNoteView}
 								/>
 							);
 						})}
 					</Masonry>
 				</div>
 			)}
-		</div>
+		</>
 	);
 }
