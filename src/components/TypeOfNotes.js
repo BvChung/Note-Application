@@ -2,7 +2,7 @@ import React from "react";
 import EditNote from "./EditNote";
 import Note from "./Note";
 
-export default function Notes({
+export default function TypeOfNotes({
 	id,
 	title,
 	text,
@@ -12,8 +12,10 @@ export default function Notes({
 	deleteNote,
 	saveNote,
 	saveNoteColor,
-	toggleEdit,
 	getPinNoteData,
+	switchNoteView,
+	unpinNote,
+	deletePinNote,
 }) {
 	const [edit, setEdit] = React.useState(false);
 	function toggleEdit() {
@@ -30,18 +32,17 @@ export default function Notes({
 		setPin((prevPin) => !prevPin);
 	}
 
-	const [saveColor, setSaveColor] = React.useState(noteColor || "");
-	function changeColor(color) {
-		setSaveColor(color);
-	}
+	// const [saveColor, setSaveColor] = React.useState(noteColor || "");
+	// function changeColor(color) {
+	// 	setSaveColor(color);
+	// }
 
-	React.useEffect(() => {
-		saveNoteColor({
-			id: id,
-			noteColor: saveColor,
-		});
-	}, [saveColor]);
-	// console.log(noteColor);
+	// React.useEffect(() => {
+	// 	saveNoteColor({
+	// 		id: id,
+	// 		noteColor: saveColor,
+	// 	});
+	// }, [saveColor]);
 
 	return (
 		<div>
@@ -52,7 +53,6 @@ export default function Notes({
 					text={text}
 					date={date}
 					noteColor={noteColor}
-					saveColor={saveColor}
 					saveNoteColor={saveNoteColor}
 					dayCreated={dayCreated}
 					saveNote={saveNote}
@@ -62,7 +62,9 @@ export default function Notes({
 					toggleCompleted={toggleCompleted}
 					togglePin={togglePin}
 					getPinNoteData={getPinNoteData}
-					changeColor={changeColor}
+					switchNoteView={switchNoteView}
+					unpinNote={unpinNote}
+					deletePinNote={deletePinNote}
 				/>
 			) : (
 				<EditNote
@@ -77,7 +79,7 @@ export default function Notes({
 					toggleEdit={toggleEdit}
 					completedNote={completedNote}
 					deleteNote={deleteNote}
-					changeColor={changeColor}
+					switchNoteView={switchNoteView}
 				/>
 			)}
 		</div>

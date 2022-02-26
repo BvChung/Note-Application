@@ -14,7 +14,7 @@ export default function SwitchView({ switchNoteView, toggleNoteView }) {
 			>
 				<div className="note-switch-btn-container">
 					<BiNote className="switch-icon" />
-					<p className="switch-text">All Notes</p>
+					<p className="switch-text">Notes</p>
 				</div>
 			</button>
 
