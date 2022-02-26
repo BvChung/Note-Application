@@ -1,12 +1,12 @@
 /* 
 #f28b82
-#fbbc04
+#ffba08
 #ffe066
 #a9e34b
-#96f2d7
+#ade8f4
 #a5d8ff
 #bac8ff
-#d7aefb
+#cfbaf0
 
  */
 
@@ -49,7 +49,7 @@
 	border-radius: 50%;
 }
 .orange {
-	background-color: #fbbc04;
+	background-color: #ffba08;
 	width: 1.8rem;
 	height: 1.8rem;
 	border-radius: 50%;
@@ -66,8 +66,8 @@
 	height: 1.8rem;
 	border-radius: 50%;
 }
-.teal {
-	background-color: #96f2d7;
+.light-blue {
+	background-color: #ade8f4;
 	width: 1.8rem;
 	height: 1.8rem;
 	border-radius: 50%;
@@ -85,7 +85,7 @@
 	border-radius: 50%;
 }
 .purple {
-	background-color: #d7aefb;
+	background-color: #cfbaf0;
 	width: 1.8rem;
 	height: 1.8rem;
 	border-radius: 50%;
@@ -96,7 +96,7 @@
 .yellow:hover,
 .green:hover,
 .blue:hover,
-.teal:hover,
+.light-blue:hover,
 .indigo:hover,
 .purple:hover {
 	border: 2px solid #212529;
@@ -107,7 +107,7 @@
 	transition: all 0.4s ease-in;
 }
 .orange-bg {
-	background-color: #fbbc04;
+	background-color: #ffba08;
 	transition: all 0.4s ease-in;
 }
 .yellow-bg {
@@ -118,8 +118,8 @@
 	background-color: #a9e34b;
 	transition: all 0.4s ease-in;
 }
-.teal-bg {
-	background-color: #96f2d7;
+.light-blue-bg {
+	background-color: #ade8f4;
 	transition: all 0.4s ease-in;
 }
 .blue-bg {
@@ -131,6 +131,6 @@
 	transition: all 0.4s ease-in;
 }
 .purple-bg {
-	background-color: #d7aefb;
+	background-color: #cfbaf0;
 	transition: all 0.5s ease-in;
 }

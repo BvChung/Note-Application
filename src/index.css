@@ -11,16 +11,7 @@ body {
 	line-height: 1.618rem;
 	color: #212529;
 	background-color: #f9fafb;
-	/* background-color: #f8f9fa; */
 }
-
-.notes-container-margin {
-	padding-top: 2.4rem;
-}
-
-/* .app-container {
-	
-} */
 
 .transition {
 	/* background-color: #f1f3f5; */
@@ -29,18 +20,55 @@ body {
 	animation-iteration-count: 1; */
 }
 
+.notes-container-padding {
+	padding-top: 2.4rem;
+}
+
 .notes-margin {
-	margin: 0 4.8rem 2.4rem 4.8rem;
+	margin: 0 4.8rem 2rem 4.8rem;
+}
+
+@media screen and (max-width: 1120px) {
+	.notes-margin {
+		margin-left: 3.2rem;
+		margin-right: 3.2rem;
+	}
+}
+@media screen and (max-width: 980px) {
+	.notes-margin {
+		margin-left: 2.4rem;
+		margin-right: 2.4rem;
+	}
+}
+@media screen and (max-width: 800px) {
+	.notes-margin {
+		margin-left: 1.6rem;
+		margin-right: 1.6rem;
+	}
+}
+@media screen and (max-width: 700px) {
+	.notes-margin {
+		margin-left: 1.2rem;
+		margin-right: 1.2rem;
+	}
+}
+@media screen and (max-width: 544px) {
+	.notes-margin {
+		margin-left: 0.6rem;
+		margin-right: 0.6rem;
+	}
 }
 
 .note-switch-display {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 4.8rem;
-	padding-top: 3.6rem;
-	/* height: ; */
-	background-color: #f1f3f5;
+	gap: 3.2rem;
+	padding-top: 7.2rem;
+	/* margin: 0 3.4rem; */
+	/* background-color: #dddce5; */
+	/* background-color: #e0dde3; */
+	background-color: #d2d0dc;
 }
 
 .note-switch-btn-container {
@@ -53,6 +81,7 @@ body {
 .switch-btn {
 	border: none;
 	/* background-color: #f1f3f5; */
+	/* width: 185px; */
 	background-color: inherit;
 	padding: 0.6rem 0.8rem;
 
@@ -62,25 +91,25 @@ body {
 
 .active-btn {
 	background-color: #f9fafb;
-	border-top: 2px solid #e9ecef;
-	border-right: 2px solid #e9ecef;
-	border-left: 2px solid #e9ecef;
+	border-top: 2px solid #d3d1db;
+	border-right: 2px solid #d3d1db;
+	border-left: 2px solid #d3d1db;
 }
 
 .active-btn .switch-icon,
 .active-btn .switch-text {
-	color: #212529;
+	color: #373546;
 }
 
 .switch-icon {
 	width: 1.8rem;
 	height: 1.8rem;
-	color: #495057;
+	color: #59546c;
 }
 
 .switch-text {
 	font-family: "Roboto";
-	color: #495057;
+	color: #59546c;
 	/* color: #f8f9fa; */
 	font-size: 1.2rem;
 	font-weight: 600;
@@ -118,15 +147,15 @@ body {
 
 .note:hover {
 	/* border: 2px solid #f1f3f5; */
-	border: 2px solid #59546c;
+	border: 2px solid #e0e0e0;
 }
 
 .date {
-	background-color: #f1f3f5;
+	background-color: #ebebeb;
 	border-radius: 9px;
 	padding: 0.2rem 0.4rem;
 	font-size: 0.9rem;
-	color: #343a40;
+	color: #1b1a23;
 	font-weight: 600;
 }
 
@@ -138,7 +167,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	padding: 0.3rem 0;
-	border-bottom: 2px solid #f1f3f5;
+	border-bottom: 2px solid #f9fafb;
 	align-items: center;
 	margin-bottom: 0.8rem;
 }
@@ -151,7 +180,7 @@ body {
 }
 
 .note-title {
-	font-weight: 700;
+	font-weight: 500;
 	font-size: 1rem;
 	margin-bottom: 0.4rem;
 }
@@ -178,7 +207,7 @@ body {
 
 .modal-note-text,
 .modal-note-title {
-	font-size: 1.1rem;
+	font-size: 1rem;
 }
 
 .modal-note-title {
@@ -199,5 +228,3 @@ body {
 	align-items: center;
 	justify-content: right;
 }
-
-/*  */
