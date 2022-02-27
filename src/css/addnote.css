@@ -1,8 +1,8 @@
-.noted {
+.add-note {
 	font-weight: 400;
-	width: 50%;
+	/* width: 45%; */
+	width: 40rem;
 	margin: 0 auto;
-	/* margin-bottom: 2.4rem; */
 	display: flex;
 	flex-direction: column;
 	font-size: 1.1rem;
@@ -12,6 +12,28 @@
 	border-radius: 9px;
 	padding: 1rem 1.2rem;
 	background-color: #f8f9fa;
+}
+
+@media screen and (max-width: 1420px) {
+	.add-note {
+		width: 32rem;
+	}
+}
+@media screen and (max-width: 980px) {
+	.add-note {
+		width: 28rem;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.add-note {
+		width: 26rem;
+	}
+}
+@media screen and (max-width: 544px) {
+	.add-note {
+		width: 22rem;
+	}
 }
 
 .addnote-bg {
@@ -25,7 +47,6 @@
 .add-note-container {
 	margin-bottom: 2.4rem;
 	padding: 1.2rem;
-	/* border-bottom: 2px solid black; */
 }
 
 .add-close-btn-container {
@@ -69,7 +90,7 @@
 	justify-content: center;
 }
 
-.noted textarea {
+.add-note textarea {
 	background-color: #dddce5;
 	padding-left: 0.6rem;
 	padding-right: 0.6rem;
@@ -146,9 +167,9 @@ textarea:focus {
 	background-color: #8b95bb;
 }
 
-.animation {
-	animation-name: fadeIn;
-	animation-duration: 1s;
+/* .animation {
+	animation: fadein 1s;
+	animation-play-state: running;
 }
 
 @keyframes fadeIn {
@@ -160,9 +181,21 @@ textarea:focus {
 	}
 }
 
+.animation2 {
+	animation-name: fadeIn2;
+	animation-duration: 1s;
+}
+
+@keyframes fadeIn2 {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+} */
+
 /* Masonry */
 .mason-margin {
 	margin: 0 !important;
-	width: 100vw;
-	max-width: 100%;
 }
