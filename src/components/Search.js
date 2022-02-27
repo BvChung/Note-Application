@@ -41,6 +41,7 @@ export default function Search({
 									tooltipId={tooltipOpened}
 									withArrow
 									color="gray"
+									zIndex="999"
 								>
 									<MdClose
 										onClick={clearSearchText}
@@ -58,6 +59,7 @@ export default function Search({
 							tooltipId={tooltipOpened}
 							withArrow
 							color="gray"
+							zIndex="999"
 						>
 							<button
 								className="search-btn"
@@ -74,6 +76,7 @@ export default function Search({
 							tooltipId={tooltipOpened}
 							withArrow
 							color="gray"
+							zIndex="999"
 						>
 							<button className="search-btn">
 								<BsSortNumericUp onClick={sortDateAscending} className="logo" />
@@ -85,6 +88,7 @@ export default function Search({
 							tooltipId={tooltipOpened}
 							withArrow
 							color="gray"
+							zIndex="999"
 						>
 							<button className="search-btn">
 								<BsSortNumericDown
@@ -99,6 +103,7 @@ export default function Search({
 							tooltipId={tooltipOpened}
 							withArrow
 							color="gray"
+							zIndex="999"
 						>
 							<button className="search-btn" onClick={deleteAllNotes}>
 								<FiTrash className="logo" />
@@ -107,7 +112,69 @@ export default function Search({
 					</div>
 				</div>
 			</div>
-			<div className="mobile-menu"></div>
+			<div className="nav-content-bot sticky">
+				<div className="sort">
+					<Tooltip
+						label="Create Note"
+						tooltipId={tooltipOpened}
+						withArrow
+						color="gray"
+						zIndex="999"
+					>
+						<button
+							className="search-btn"
+							onClick={() => {
+								if (!switchNoteView) toggleCreateNote();
+								window.scrollTo({ top: 0, behavior: "smooth" });
+							}}
+						>
+							<FiPlus className="logo" />
+						</button>
+					</Tooltip>
+
+					<Tooltip
+						label="Sort Ascending"
+						tooltipId={tooltipOpened}
+						withArrow
+						color="gray"
+						zIndex="999"
+					>
+						<button className="search-btn">
+							<BsSortNumericUp onClick={sortDateAscending} className="logo" />
+						</button>
+					</Tooltip>
+
+					<Tooltip
+						label="Sort Descending"
+						tooltipId={tooltipOpened}
+						withArrow
+						color="gray"
+						zIndex="999"
+					>
+						<button className="search-btn">
+							<BsSortNumericDown
+								onClick={sortDateDescending}
+								className="logo"
+							/>
+						</button>
+					</Tooltip>
+
+					<Tooltip
+						label="Delete All Notes"
+						tooltipId={tooltipOpened}
+						withArrow
+						color="gray"
+						zIndex="999"
+					>
+						<button className="search-btn" onClick={deleteAllNotes}>
+							<FiTrash className="logo" />
+						</button>
+					</Tooltip>
+				</div>
+			</div>
+			{/* <div className="mobile-menu">
+
+			</div> */}
 		</>
 	);
 }

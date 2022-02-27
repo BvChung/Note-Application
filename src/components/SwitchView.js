@@ -24,7 +24,7 @@ export default function SwitchView({ switchNoteView, toggleNoteView }) {
 			>
 				<div className="note-switch-btn-container">
 					<BsPinAngle className="switch-icon" />
-					<p className="switch-text">Pinned Notes</p>
+					<p className="switch-text">Pinned</p>
 				</div>
 			</button>
 		</div>
