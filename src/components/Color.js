@@ -5,14 +5,13 @@ import { MdOutlineColorLens } from "react-icons/md";
 import { displayColors } from "../helper/helperFunctions";
 
 export default function Color({
-	changeColor,
 	currentlyEditing,
 	handleEdit,
 	saveNoteColor,
 	id,
 }) {
 	const [opened, setOpened] = React.useState(false);
-	const [tooltipOpened, setTooltipOpened] = React.useState(false);
+	const tooltipOpened = false;
 
 	return (
 		<div>
@@ -21,6 +20,7 @@ export default function Color({
 				tooltipId={tooltipOpened}
 				color="gray"
 				withArrow
+				zIndex="999"
 			>
 				<Popover
 					opened={opened}
@@ -36,6 +36,7 @@ export default function Color({
 					width={170}
 					position="bottom"
 					withArrow
+					styles={{ body: { backgroundColor: "#f9fafb" } }}
 				>
 					<div className="color-picker">
 						{displayColors.map((color) => {

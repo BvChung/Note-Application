@@ -2,6 +2,7 @@ import React from "react";
 import Color from "./Color";
 import { FiTrash, FiEdit, FiCheck, FiXCircle } from "react-icons/fi";
 import { BsPinAngle } from "react-icons/bs";
+import { FaRegCopy } from "react-icons/fa";
 import { Menu, Tooltip, ScrollArea } from "@mantine/core";
 import Backdrop from "@mui/material/Backdrop";
 import Modal from "@mui/material/Modal";
@@ -32,7 +33,13 @@ export default function NewNote({
 
 	function Tools() {
 		return (
-			<Tooltip label="More" opened={tooltipOpened} withArrow>
+			<Tooltip
+				label="More"
+				opened={tooltipOpened}
+				withArrow
+				color="gray"
+				zIndex="999"
+			>
 				<Menu
 					// trigger="hover"
 					delay={300}
@@ -45,9 +52,12 @@ export default function NewNote({
 							color: "#212529",
 						},
 						itemHovered: {
-							backgroundColor: "#f1f3f5",
+							backgroundColor: "#ECEAEB",
 						},
-						body: { color: "red" },
+						body: { backgroundColor: "#f9fafb" },
+						itemBody: {
+							color: "#212529",
+						},
 					}}
 					onMouseEnter={() => setTooltipOpened(true)}
 					onMouseLeave={() => setTooltipOpened(false)}
@@ -101,6 +111,16 @@ export default function NewNote({
 					>
 						Edit Note
 					</Menu.Item>
+
+					<Menu.Item
+						icon={<FaRegCopy />}
+						onClick={() => {
+							navigator.clipboard.writeText(text);
+						}}
+					>
+						Copy Text
+					</Menu.Item>
+
 					<Menu.Item
 						icon={<FiTrash className="trash-icon" />}
 						onClick={() => {
@@ -170,16 +190,6 @@ export default function NewNote({
 						<div className={`note modal ${noteColor}`}>
 							<div className="note-details">
 								<small className="date">{date}</small>
-
-								{/* <div className="note-tools">
-									<Color
-										// key={id}
-										id={id}
-										noteColor={noteColor}
-										saveNoteColor={saveNoteColor}
-									/>
-									{Tools()}
-								</div> */}
 							</div>
 							<div className="text-container">
 								<p className="modal-note-title">{title}</p>

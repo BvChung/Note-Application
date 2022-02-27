@@ -65,6 +65,7 @@ export default function TypeOfNotes({
 					switchNoteView={switchNoteView}
 					unpinNote={unpinNote}
 					deletePinNote={deletePinNote}
+					pin={pin}
 				/>
 			) : (
 				<EditNote
