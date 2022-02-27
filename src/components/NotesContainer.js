@@ -32,7 +32,7 @@ export default function NoteList({
 						{/* Iterate through notes data and render Notes */}
 						<Masonry
 							columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
-							spacing={3}
+							spacing={2}
 							className="mason-margin"
 						>
 							{notes.map((note) => {
