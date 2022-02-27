@@ -42,7 +42,7 @@ export default function AddNote({ saveNote }) {
 
 	return (
 		<div
-			className="noted animation"
+			className="add-note animation"
 			// onMouseEnter={() => setShow(true)}
 			// onMouseLeave={() => setShow(false)}
 		>

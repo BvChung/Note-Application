@@ -150,7 +150,10 @@ export default function App() {
 
 	const [createNote, setCreateNote] = React.useState(false);
 	function toggleCreateNote() {
-		setCreateNote((prevCreate) => !prevCreate);
+		setCreateNote(true);
+	}
+	function closeCreateNote() {
+		setCreateNote(false);
 	}
 
 	function sortDateAscending() {
@@ -275,7 +278,7 @@ export default function App() {
 				toggleNoteView={toggleNoteView}
 			/>
 			<div className="notes-container-padding">
-				<CloseAddNote.Provider value={toggleCreateNote}>
+				<CloseAddNote.Provider value={closeCreateNote}>
 					<NotesContainer
 						notes={notes.filter((note) =>
 							note.text.toLowerCase().includes(searchNote.toLowerCase())
