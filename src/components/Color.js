@@ -45,7 +45,6 @@ export default function Color({
 									key={color.label}
 									label={color.label}
 									onClick={(event) => {
-										// changeColor(color.background);
 										saveNoteColor({
 											noteColor: color.background,
 											id: id,

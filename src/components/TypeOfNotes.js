@@ -32,18 +32,6 @@ export default function TypeOfNotes({
 		setPin((prevPin) => !prevPin);
 	}
 
-	// const [saveColor, setSaveColor] = React.useState(noteColor || "");
-	// function changeColor(color) {
-	// 	setSaveColor(color);
-	// }
-
-	// React.useEffect(() => {
-	// 	saveNoteColor({
-	// 		id: id,
-	// 		noteColor: saveColor,
-	// 	});
-	// }, [saveColor]);
-
 	return (
 		<div>
 			{!edit ? (

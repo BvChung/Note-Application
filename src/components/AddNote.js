@@ -41,11 +41,7 @@ export default function AddNote({ saveNote }) {
 	}
 
 	return (
-		<div
-			className="add-note animation"
-			// onMouseEnter={() => setShow(true)}
-			// onMouseLeave={() => setShow(false)}
-		>
+		<div className="add-note animation">
 			<div className="addnote-title">
 				<div className="add-close-btn-container">
 					<button onClick={closeAddNote} className="addnote-close-btn">

@@ -157,12 +157,7 @@ export default function NewNote({
 				<small className="date">{date}</small>
 
 				<div className="note-tools">
-					<Color
-						// key={id}
-						id={id}
-						noteColor={noteColor}
-						saveNoteColor={saveNoteColor}
-					/>
+					<Color id={id} noteColor={noteColor} saveNoteColor={saveNoteColor} />
 
 					{Tools()}
 				</div>

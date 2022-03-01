@@ -53,7 +53,6 @@ export default function EditNote({
 
 				<div className="note-tools">
 					<Color
-						// key={id}
 						id={id}
 						changeColor={changeColor}
 						noteColor={noteColor}

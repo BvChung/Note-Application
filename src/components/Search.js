@@ -16,7 +16,6 @@ export default function Search({
 	deleteAllNotes,
 	switchNoteView,
 }) {
-	// const [tooltipOpened, setTooltipOpened] = React.useState(false);
 	const tooltipOpened = false;
 	const clearSearchText = useClearSearchText();
 
@@ -172,9 +171,6 @@ export default function Search({
 					</Tooltip>
 				</div>
 			</div>
-			{/* <div className="mobile-menu">
-
-			</div> */}
 		</>
 	);
 }
