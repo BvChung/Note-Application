@@ -167,9 +167,9 @@ textarea:focus {
 	background-color: #8b95bb;
 }
 
-/* .animation {
-	animation: fadein 1s;
-	animation-play-state: running;
+.animation {
+	animation-name: fadeIn;
+	animation-duration: 1s;
 }
 
 @keyframes fadeIn {
@@ -180,20 +180,6 @@ textarea:focus {
 		opacity: 1;
 	}
 }
-
-.animation2 {
-	animation-name: fadeIn2;
-	animation-duration: 1s;
-}
-
-@keyframes fadeIn2 {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-} */
 
 /* Masonry */
 .mason-margin {
