@@ -43,6 +43,7 @@
 	display: flex;
 	align-items: center;
 	width: 50%;
+	max-width: 600px;
 	justify-content: space-between;
 	gap: 1.2rem;
 	padding: 0.4rem 0.8rem;
