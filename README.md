@@ -1,6 +1,6 @@
 # React Note Application
 
-## Website Link: https://bvchung.github.io/NoteApp/
+## Website Link: https://bvchung.github.io/Note-Application/
 
 ## Running the app
 
