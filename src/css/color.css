@@ -1,8 +1,8 @@
 /* 
 #f28b82
-#ffba08
-#ffe066
-#a9e34b
+#fbbc04
+#ffe375
+#c5e1a5
 #ade8f4
 #a5d8ff
 #bac8ff
@@ -49,19 +49,19 @@
 	border-radius: 50%;
 }
 .orange {
-	background-color: #ffba08;
+	background-color: #fbbc04;
 	width: 1.8rem;
 	height: 1.8rem;
 	border-radius: 50%;
 }
 .yellow {
-	background-color: #ffe066;
+	background-color: #ffe375;
 	width: 1.8rem;
 	height: 1.8rem;
 	border-radius: 50%;
 }
 .green {
-	background-color: #a9e34b;
+	background-color: #c5e1a5;
 	width: 1.8rem;
 	height: 1.8rem;
 	border-radius: 50%;
@@ -107,15 +107,15 @@
 	transition: all 0.4s ease-in;
 }
 .orange-bg {
-	background-color: #ffba08;
+	background-color: #fbbc04;
 	transition: all 0.4s ease-in;
 }
 .yellow-bg {
-	background-color: #ffe066;
+	background-color: #ffe375;
 	transition: all 0.4s ease-in;
 }
 .green-bg {
-	background-color: #a9e34b;
+	background-color: #c5e1a5;
 	transition: all 0.4s ease-in;
 }
 .light-blue-bg {

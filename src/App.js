@@ -181,11 +181,8 @@ export default function App() {
 	}
 
 	function deleteAllNotes() {
-		if (switchNoteView) {
-			setPinNoteData([]);
-		} else {
-			setNotes([]);
-		}
+		setPinNoteData([]);
+		setNotes([]);
 	}
 
 	// PinnedNotes ----------------------------
@@ -254,10 +251,6 @@ export default function App() {
 			})
 		);
 	}
-
-	// console.log(notes);
-	// console.log(pinNoteData);
-	// console.log(switchNoteView);
 
 	return (
 		<div className="app-container">

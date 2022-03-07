@@ -41,7 +41,7 @@ export default function AddNote({ saveNote }) {
 	}
 
 	return (
-		<div className="add-note animation">
+		<div className="add-note animation notes-margin">
 			<div className="addnote-title">
 				<div className="add-close-btn-container">
 					<button onClick={closeAddNote} className="addnote-close-btn">
@@ -52,6 +52,7 @@ export default function AddNote({ saveNote }) {
 					<p className="addnote-text">Create a note</p>
 				</div>
 			</div>
+
 			<TextareaAutosize
 				className={`title ${show ? "" : "hidden"}`}
 				name="title"
@@ -59,6 +60,7 @@ export default function AddNote({ saveNote }) {
 				onChange={handleNoteChange}
 				placeholder="Add a title..."
 			/>
+
 			<TextareaAutosize
 				className="text"
 				name="text"

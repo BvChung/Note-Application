@@ -152,7 +152,7 @@ export default function NewNote({
 	};
 
 	return (
-		<div className={`note ${noteColor}`}>
+		<div className={`note ${noteColor} animation`}>
 			<div className="note-details">
 				<small className="date">{date}</small>
 

@@ -21,14 +21,14 @@ export default function NoteList({
 	return (
 		<>
 			{!switchNoteView ? (
-				<div className="transition">
+				<div className="notes-margin">
 					{createNote && (
-						<div className="addnote-bg animation">
+						<div className="addnote-bg">
 							<AddNote notes={notes} saveNote={saveNote} />
 						</div>
 					)}
 
-					<div className="notes-margin ">
+					<div>
 						{/* Iterate through notes data and render Notes */}
 						<Masonry
 							columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}

@@ -1,7 +1,8 @@
 .add-note {
 	font-weight: 400;
-	/* width: 45%; */
-	width: 40rem;
+	width: 100%;
+	max-width: 50rem;
+	/* width: 40rem; */
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
@@ -10,30 +11,8 @@
 	overflow: auto;
 	box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 3px;
 	border-radius: 9px;
-	padding: 1rem 1.2rem;
+	padding: 1.6rem;
 	background-color: #f8f9fa;
-}
-
-@media screen and (max-width: 1420px) {
-	.add-note {
-		width: 32rem;
-	}
-}
-@media screen and (max-width: 980px) {
-	.add-note {
-		width: 28rem;
-	}
-}
-
-@media screen and (max-width: 700px) {
-	.add-note {
-		width: 26rem;
-	}
-}
-@media screen and (max-width: 544px) {
-	.add-note {
-		width: 22rem;
-	}
 }
 
 .addnote-bg {
@@ -94,8 +73,7 @@
 	background-color: #dddce5;
 	padding-left: 0.6rem;
 	padding-right: 0.6rem;
-	/* padding-top: 1.2rem;
-	padding-bottom: 1.2rem; */
+
 	font-family: inherit;
 	font-size: 1rem;
 	line-height: inherit;
@@ -103,7 +81,6 @@
 	/* height: 1.8rem; */
 	border: none;
 	resize: none;
-	border-radius: 9px;
 }
 textarea {
 	background-color: transparent;
@@ -114,7 +91,6 @@ textarea {
 	height: 1.8rem;
 	border: none;
 	resize: none;
-	border-radius: 9px;
 }
 
 textarea::placeholder {
@@ -137,22 +113,22 @@ textarea:focus {
 }
 
 .text {
-	margin-bottom: 1.6rem;
+	margin-bottom: 1.8rem;
 }
 
 .note-btns {
 	display: flex;
 	gap: 1.2rem;
-	justify-content: right;
 }
 
 .save {
 	border: none;
-	border-radius: 9px;
+	border-radius: 5px;
 	padding: 0.6rem 1.4rem;
 	font-family: inherit;
 	font-size: 1rem;
 	font-weight: 600;
+	width: 100%;
 
 	background-color: #444d74;
 	color: #fff;
@@ -161,15 +137,13 @@ textarea:focus {
 }
 
 .save:hover {
-	/* background-color: #535f8d;
-	/* color: #373546; */
 	color: #fff;
 	background-color: #8b95bb;
 }
 
 .animation {
 	animation-name: fadeIn;
-	animation-duration: 1s;
+	animation-duration: 500ms;
 }
 
 @keyframes fadeIn {
