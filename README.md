@@ -2,10 +2,17 @@
 
 ## Website Link: https://bvchung.github.io/Note-Application/
 
+## Overview
+This project is a note application built with React implementing CRUD functionality using local storage as a mock database.
+
 ## Running the app
 
-* `npm install` 
-* `npm start`
+Installing dependencies
+```
+npm i 
+
+npm start
+```
 
 ## What it does
 
@@ -13,4 +20,8 @@
 
 ## Tech Used
 
-React/CSS/[MUI](https://mui.com/)/[Mantine](https://mantine.dev/)
+- React
+- CSS
+- [Material UI](https://mui.com/)
+- [Mantine](https://mantine.dev/)
+
